@@ -11,7 +11,7 @@ namespace Mediatek86.modele
 
         private static readonly string server = "localhost";
         private static readonly string userid = "root";
-        private static readonly string password = "";
+        private static readonly string password = "W4F0I9Us0DJy";
         private static readonly string database = "mediatek86";
         private static readonly string connectionString = "server="+server+";user id="+userid+";password="+password+";database="+database+";SslMode=none";
 
