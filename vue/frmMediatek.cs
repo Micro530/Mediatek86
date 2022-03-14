@@ -5,6 +5,7 @@ using Mediatek86.metier;
 using Mediatek86.controleur;
 using System.Drawing;
 using System.Linq;
+using System.Threading;
 
 namespace Mediatek86.vue
 {
@@ -1277,6 +1278,72 @@ namespace Mediatek86.vue
         }
 
         #endregion
+        /// <summary>
+        /// Evenement lors du clique sur le btnSupprLivre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSupprLivre_Click(object sender, EventArgs e)
+        {
+            if(dgvLivresListe.CurrentCell.RowIndex != -1)
+            {
+                Livre livre = (Livre)dgvLivresListe.CurrentRow.DataBoundItem;
+                if(ClickBtnSupprConfirmation(livre.Titre, livre.Id, "ce livre"))
+                {
+                    dgvLivresListe.Rows.Remove(dgvLivresListe.CurrentRow);
+                }
+            }
+        }
+        /// <summary>
+        /// Méthode permettant de gérer la demande de confirmation de suppression
+        /// </summary>
+        /// <param name="message">element du message a rajouter pou personnaliser</param>
+        /// <param name="titre">titre de l'element</param>
+        /// <param name="id">id de l'element</param>
+        /// <returns></returns>
+        private bool ClickBtnSupprConfirmation(string titre, string id, string message = "cette element")
+        {
+            DialogResult dialogResult = MessageBox.Show($"Êtes-vous sûr de vouloir supprimer {message} nommé : '{titre}'\n\nVoulez-vous continuer ?",
+                "Confirmation de suppression", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            if (dialogResult.Equals(DialogResult.Yes))
+            {
+                return controle.SupprDocument(id);
+                
+            }
+            return false;
 
+        }
+        /// <summary>
+        /// Evenement lors du clique sur le btnSupprDvd
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSupprDvd_Click(object sender, EventArgs e)
+        {
+            if (dgvDvdListe.CurrentCell.RowIndex != -1)
+            {
+                Dvd dvd = (Dvd)dgvDvdListe.CurrentRow.DataBoundItem;
+                if (ClickBtnSupprConfirmation(dvd.Titre, dvd.Id, "ce dvd"))
+                {
+                    dgvDvdListe.Rows.Remove(dgvDvdListe.CurrentRow);
+                }
+            }
+        }
+        /// <summary>
+        /// Evenement lors du clique sur le btnSupprRevues
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSupprRevues_Click(object sender, EventArgs e)
+        {
+            if (dgvRevuesListe.CurrentCell.RowIndex != -1)
+            {
+                Revue revue = (Revue)dgvRevuesListe.CurrentRow.DataBoundItem;
+                if (ClickBtnSupprConfirmation(revue.Titre, revue.Id, "cette revue"))
+                {
+                    dgvRevuesListe.Rows.Remove(dgvRevuesListe.CurrentRow);
+                }
+            }
+        }
     }
 }

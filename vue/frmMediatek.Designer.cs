@@ -177,6 +177,9 @@ namespace Mediatek86.vue
             this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.btnReceptionRechercher = new System.Windows.Forms.Button();
+            this.btnSupprLivre = new System.Windows.Forms.Button();
+            this.btnSupprDvd = new System.Windows.Forms.Button();
+            this.btnSupprRevues = new System.Windows.Forms.Button();
             this.tabOngletsApplication.SuspendLayout();
             this.tabLivres.SuspendLayout();
             this.grpLivresInfos.SuspendLayout();
@@ -429,6 +432,7 @@ namespace Mediatek86.vue
             // 
             // grpLivresRecherche
             // 
+            this.grpLivresRecherche.Controls.Add(this.btnSupprLivre);
             this.grpLivresRecherche.Controls.Add(this.btnLivresAnnulRayons);
             this.grpLivresRecherche.Controls.Add(this.btnlivresAnnulPublics);
             this.grpLivresRecherche.Controls.Add(this.btnLivresNumRecherche);
@@ -818,6 +822,7 @@ namespace Mediatek86.vue
             // 
             // grpDvdRecherche
             // 
+            this.grpDvdRecherche.Controls.Add(this.btnSupprDvd);
             this.grpDvdRecherche.Controls.Add(this.btnDvdAnnulRayons);
             this.grpDvdRecherche.Controls.Add(this.btnDvdAnnulPublics);
             this.grpDvdRecherche.Controls.Add(this.btnDvdNumRecherche);
@@ -1207,6 +1212,7 @@ namespace Mediatek86.vue
             // 
             // grpRevuesRecherche
             // 
+            this.grpRevuesRecherche.Controls.Add(this.btnSupprRevues);
             this.grpRevuesRecherche.Controls.Add(this.btnRevuesAnnulRayons);
             this.grpRevuesRecherche.Controls.Add(this.btnRevuesAnnulPublics);
             this.grpRevuesRecherche.Controls.Add(this.btnRevuesNumRecherche);
@@ -1758,6 +1764,42 @@ namespace Mediatek86.vue
             this.btnReceptionRechercher.UseVisualStyleBackColor = true;
             this.btnReceptionRechercher.Click += new System.EventHandler(this.btnReceptionRechercher_Click);
             // 
+            // btnSupprLivre
+            // 
+            this.btnSupprLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSupprLivre.ForeColor = System.Drawing.Color.Red;
+            this.btnSupprLivre.Location = new System.Drawing.Point(314, 108);
+            this.btnSupprLivre.Name = "btnSupprLivre";
+            this.btnSupprLivre.Size = new System.Drawing.Size(96, 22);
+            this.btnSupprLivre.TabIndex = 17;
+            this.btnSupprLivre.Text = "Supprimer";
+            this.btnSupprLivre.UseVisualStyleBackColor = true;
+            this.btnSupprLivre.Click += new System.EventHandler(this.btnSupprLivre_Click);
+            // 
+            // btnSupprDvd
+            // 
+            this.btnSupprDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSupprDvd.ForeColor = System.Drawing.Color.Red;
+            this.btnSupprDvd.Location = new System.Drawing.Point(314, 108);
+            this.btnSupprDvd.Name = "btnSupprDvd";
+            this.btnSupprDvd.Size = new System.Drawing.Size(96, 22);
+            this.btnSupprDvd.TabIndex = 18;
+            this.btnSupprDvd.Text = "Supprimer";
+            this.btnSupprDvd.UseVisualStyleBackColor = true;
+            this.btnSupprDvd.Click += new System.EventHandler(this.btnSupprDvd_Click);
+            // 
+            // btnSupprRevues
+            // 
+            this.btnSupprRevues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSupprRevues.ForeColor = System.Drawing.Color.Red;
+            this.btnSupprRevues.Location = new System.Drawing.Point(314, 108);
+            this.btnSupprRevues.Name = "btnSupprRevues";
+            this.btnSupprRevues.Size = new System.Drawing.Size(96, 22);
+            this.btnSupprRevues.TabIndex = 18;
+            this.btnSupprRevues.Text = "Supprimer";
+            this.btnSupprRevues.UseVisualStyleBackColor = true;
+            this.btnSupprRevues.Click += new System.EventHandler(this.btnSupprRevues_Click);
+            // 
             // FrmMediatek
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1951,6 +1993,9 @@ namespace Mediatek86.vue
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.PictureBox pcbReceptionExemplaireRevueImage;
         private System.Windows.Forms.Label label56;
+        private System.Windows.Forms.Button btnSupprLivre;
+        private System.Windows.Forms.Button btnSupprDvd;
+        private System.Windows.Forms.Button btnSupprRevues;
     }
 }
 

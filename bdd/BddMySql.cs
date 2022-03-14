@@ -131,7 +131,7 @@ namespace Mediatek86.bdd
         /// </summary>
         /// <param name="stringQuery">requête autre que select</param>
         /// <param name="parameters">dictionnire contenant les parametres</param>
-        public void ReqUpdate(string stringQuery, Dictionary<string, object> parameters)
+        public bool ReqUpdate(string stringQuery, Dictionary<string, object> parameters)
         {
             MySqlCommand command;
             try
@@ -146,15 +146,19 @@ namespace Mediatek86.bdd
                 }
                 command.Prepare();
                 command.ExecuteNonQuery();
+                return true;
             }
             catch (MySqlException e)
             {
+                MessageBox.Show(e.Message, "Operation impossible", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine(e.Message);
                 throw;
+                return false;
             }
             catch (InvalidOperationException e)
             {
                 ErreurGraveBddNonAccessible(e);
+                return false;
             }
         }
 
