@@ -103,6 +103,15 @@ namespace Mediatek86.controleur
             return Dao.CreerExemplaire(exemplaire);
         }
 
+        /// <summary>
+        /// Permet de supprimer le document envoyé
+        /// </summary>
+        /// <param name="id">id du document à supprimer</param>
+        public bool SupprDocument(string id)
+        {
+            return Dao.SupprDocument(id);
+        }
+
     }
 
 }

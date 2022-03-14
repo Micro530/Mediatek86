@@ -8,13 +8,15 @@ namespace Mediatek86.modele
 {
     public static class Dao
     {
-
+        #region variables
         private static readonly string server = "localhost";
         private static readonly string userid = "root";
         private static readonly string password = "W4F0I9Us0DJy";
         private static readonly string database = "mediatek86";
         private static readonly string connectionString = "server="+server+";user id="+userid+";password="+password+";database="+database+";SslMode=none";
+        #endregion
 
+        #region les GetAll
         /// <summary>
         /// Retourne tous les genres à partir de la BDD
         /// </summary>
@@ -200,7 +202,6 @@ namespace Mediatek86.modele
 
             return lesRevues;
         }
-
         /// <summary>
         /// Retourne les exemplaires d'une revue
         /// </summary>
@@ -234,6 +235,7 @@ namespace Mediatek86.modele
 
             return lesExemplaires;
         }
+        #endregion
 
         /// <summary>
         /// ecriture d'un exemplaire en base de données
@@ -258,6 +260,30 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }catch{
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// suppression d'un element dans la table document
+        /// </summary>
+        /// <param name="id">id de l'element à supprimer</param>
+        public static bool SupprDocument(string id)
+        {
+            try
+            {
+                string req = "delete from document where id = @id";
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", id}
+                };
+                BddMySql curs = BddMySql.GetInstance(connectionString);
+                curs.ReqUpdate(req, parameters);
+                curs.Close();
+                return true;
+            }
+            catch(Exception e)
+            {
                 return false;
             }
         }
