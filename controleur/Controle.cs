@@ -20,12 +20,6 @@ namespace Mediatek86.controleur
         /// </summary>
         public Controle()
         {
-            lesLivres = Dao.GetAllLivres();
-            lesDvd = Dao.GetAllDvd();
-            lesRevues = Dao.GetAllRevues();
-            lesGenres = Dao.GetAllGenres();
-            lesRayons = Dao.GetAllRayons();
-            lesPublics = Dao.GetAllPublics();
             FrmMediatek frmMediatek = new FrmMediatek(this);
             frmMediatek.ShowDialog();
         }
@@ -36,7 +30,7 @@ namespace Mediatek86.controleur
         /// <returns>Collection d'objets Genre</returns>
         public List<Categorie> GetAllGenres()
         {
-            return lesGenres;
+            return Dao.GetAllGenres();
         }
 
         /// <summary>
@@ -45,7 +39,7 @@ namespace Mediatek86.controleur
         /// <returns>Collection d'objets Livre</returns>
         public List<Livre> GetAllLivres()
         {
-            return lesLivres;
+            return Dao.GetAllLivres();
         }
 
         /// <summary>
@@ -54,7 +48,7 @@ namespace Mediatek86.controleur
         /// <returns>Collection d'objets dvd</returns>
         public List<Dvd> GetAllDvd()
         {
-            return lesDvd;
+            return Dao.GetAllDvd();
         }
 
         /// <summary>
@@ -63,7 +57,7 @@ namespace Mediatek86.controleur
         /// <returns>Collection d'objets Revue</returns>
         public List<Revue> GetAllRevues()
         {
-            return lesRevues;
+            return Dao.GetAllRevues();
         }
 
         /// <summary>
@@ -72,7 +66,7 @@ namespace Mediatek86.controleur
         /// <returns>Collection d'objets Rayon</returns>
         public List<Categorie> GetAllRayons()
         {
-            return lesRayons;
+            return Dao.GetAllRayons();
         }
 
         /// <summary>
@@ -81,7 +75,7 @@ namespace Mediatek86.controleur
         /// <returns>Collection d'objets Public</returns>
         public List<Categorie> GetAllPublics()
         {
-            return lesPublics;
+            return Dao.GetAllPublics();
         }
 
         /// <summary>
@@ -111,7 +105,54 @@ namespace Mediatek86.controleur
         {
             return Dao.SupprDocument(id);
         }
-
+        /// <summary>
+        /// Pemret de modifier un livre
+        /// </summary>
+        /// <param name="livre"></param>
+        public void ModifierLivre(Livre livre)
+        {
+            Dao.ModifierLivre(livre);
+        }
+        /// <summary>
+        /// Pemret de modifier un dvd
+        /// </summary>
+        /// <param name="dvd"></param>
+        public void ModifierDvd(Dvd dvd)
+        {
+            Dao.ModifierDvd(dvd);
+        }
+        /// <summary>
+        /// Pemret de modifier une Revue
+        /// </summary>
+        /// <param name="revue"></param>
+        public void ModifierRevue(Revue revue)
+        {
+            Dao.ModifierRevue(revue);
+        }
+        /// <summary>
+        /// Pemret d'ajouter un livre
+        /// </summary>
+        /// <param name="livre"></param>
+        public void AjouterLivre(Livre livre)
+        {
+            Dao.AjouterLivre(livre);
+        }
+        /// <summary>
+        /// Pemret d'ajouter un dvd
+        /// </summary>
+        /// <param name="dvd"></param>
+        public void AjouterDvd(Dvd dvd)
+        {
+            Dao.AjouterDvd(dvd);
+        }
+        /// <summary>
+        /// Pemret d'ajouter une Revue
+        /// </summary>
+        /// <param name="revue"></param>
+        public void AjouterRevue(Revue revue)
+        {
+            Dao.AjouterRevue(revue);
+        }
     }
 
 }
