@@ -263,7 +263,220 @@ namespace Mediatek86.modele
                 return false;
             }
         }
-
+        /// <summary>
+        /// Modification d'un document
+        /// </summary>
+        /// <param name="document">document à modifier</param>
+        /// <returns>true si la modification à pu se faire</returns>
+        private static bool ModifierDocument(Document document)
+        {
+            try
+            {
+                string req = "UPDATE document set titre = @titre, image = @image, idRayon = @idRayon, idPublic = @idPublic, idGenre = @idGenre where id = @id";
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", document.Id},
+                    { "@titre", document.Titre},
+                    { "@image", document.Image},
+                    { "@idRayon", document.IdRayon},
+                    { "@idPublic",document.IdPublic},
+                    { "@idGenre",document.IdGenre}
+                };
+                BddMySql curs = BddMySql.GetInstance(connectionString);
+                curs.ReqUpdate(req, parameters);
+                curs.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Modification d'un livre
+        /// </summary>
+        /// <param name="livre">document à modifier</param>
+        /// <returns>true si la modification à pu se faire</returns>
+        public static bool ModifierLivre(Livre livre)
+        {
+            try
+            {
+                Document document = new Document(livre.Id, livre.Titre, livre.Image, livre.IdGenre, livre.Genre, livre.IdPublic,livre.Public, livre.IdRayon, livre.Rayon);
+                if (!ModifierDocument(document))
+                {
+                    throw new Exception();
+                }
+                string req = "UPDATE livre set ISBN = @ISBN, auteur = @auteur, collection = @collection where id = @id";
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", livre.Id},
+                    { "@ISBN", livre.Isbn},
+                    { "@auteur", livre.Auteur},
+                    { "@collection", livre.Collection}
+                };
+                BddMySql curs = BddMySql.GetInstance(connectionString);
+                curs.ReqUpdate(req, parameters);
+                curs.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Modification d'un dvd
+        /// </summary>
+        /// <param name="dvd">document à modifier</param>
+        /// <returns>true si la modification à pu se faire</returns>
+        public static bool ModifierDvd(Dvd dvd)
+        {
+            try
+            {
+                Document document = new Document(dvd.Id, dvd.Titre, dvd.Image, dvd.IdGenre, dvd.Genre, dvd.IdPublic, dvd.Public, dvd.IdRayon, dvd.Rayon);
+                if (!ModifierDocument(document))
+                {
+                    throw new Exception();
+                }
+                string req = "UPDATE dvd set synopsis = @synopsis, realisateur = @realisateur, duree = @duree where id = @id";
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", dvd.Id},
+                    { "@synopsis", dvd.Synopsis},
+                    { "@realisateur", dvd.Realisateur},
+                    { "@duree", dvd.Duree}
+                };
+                BddMySql curs = BddMySql.GetInstance(connectionString);
+                curs.ReqUpdate(req, parameters);
+                curs.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Modification d'un livre
+        /// </summary>
+        /// <param name="revue">document à modifier</param>
+        /// <returns>true si la modification à pu se faire</returns>
+        public static bool ModifierRevue(Revue revue)
+        {
+            try
+            {
+                Document document = new Document(revue.Id, revue.Titre, revue.Image, revue.IdGenre, revue.Genre, revue.IdPublic, revue.Public, revue.IdRayon, revue.Rayon);
+                if (!ModifierDocument(document))
+                {
+                    throw new Exception();
+                }
+                string req = "UPDATE revue set empruntable = @empruntable, periodicite = @periodicite, delaiMiseADispo = @delaiMiseADispo where id = @id";
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", revue.Id},
+                    { "@empruntable", revue.Empruntable},
+                    { "@periodicite", revue.Periodicite},
+                    { "@delaiMiseADispo", revue.DelaiMiseADispo}
+                };
+                BddMySql curs = BddMySql.GetInstance(connectionString);
+                curs.ReqUpdate(req, parameters);
+                curs.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// ajout d'un document
+        /// </summary>
+        /// <param name="document">document à modifier</param>
+        /// <returns>true si la modification à pu se faire</returns>
+        private static bool AjouterDocument(Document document)
+        {
+            try
+            {
+                string req = "insert into document (id, titre, image, idRayon, idPublic, idGenre) values (@id, @titre,@image,@idRayon,@idPublic,@idGenre)";
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", document.Id},
+                    { "@titre", document.Titre},
+                    { "@image", document.Image},
+                    { "@idRayon", document.IdRayon},
+                    { "@idPublic",document.IdPublic},
+                    { "@idGenre",document.IdGenre}
+                };
+                BddMySql curs = BddMySql.GetInstance(connectionString);
+                curs.ReqUpdate(req, parameters);
+                curs.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// ajout d'un livre_dvd
+        /// </summary>
+        /// <param name="id">id a ajouter</param>
+        /// <returns>true si la modification à pu se faire</returns>
+        private static bool AjouterLivreDvd(string id)
+        {
+            try
+            {
+                string req = "insert into livres_dvd (id) values (@id)";
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", id}
+                };
+                BddMySql curs = BddMySql.GetInstance(connectionString);
+                curs.ReqUpdate(req, parameters);
+                curs.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Modification d'un livre
+        /// </summary>
+        /// <param name="livre">document à modifier</param>
+        /// <returns>true si la modification à pu se faire</returns>
+        public static bool AjouterLivre(Livre livre)
+        {
+            try
+            {
+                Document document = new Document(livre.Id, livre.Titre, livre.Image, livre.IdGenre, livre.Genre, livre.IdPublic, livre.Public, livre.IdRayon, livre.Rayon);
+                if (!AjouterDocument(document))
+                {
+                    throw new Exception();
+                }
+                if (!AjouterLivreDvd(livre.Id))
+                {
+                    throw new Exception();
+                }
+                string req = "insert into livre (id, ISBN, auteur, collection) values (@id, @ISBN,@auteur,@collection)";
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", livre.Id},
+                    { "@ISBN", livre.Isbn},
+                    { "@auteur", livre.Auteur},
+                    { "@collection", livre.Collection}
+                };
+                BddMySql curs = BddMySql.GetInstance(connectionString);
+                curs.ReqUpdate(req, parameters);
+                curs.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         /// <summary>
         /// suppression d'un element dans la table document
         /// </summary>
@@ -287,6 +500,73 @@ namespace Mediatek86.modele
                 return false;
             }
         }
-
+        /// <summary>
+        /// Modification d'un dvd
+        /// </summary>
+        /// <param name="dvd">document à modifier</param>
+        /// <returns>true si la modification à pu se faire</returns>
+        public static bool AjouterDvd(Dvd dvd)
+        {
+            try
+            {
+                Document document = new Document(dvd.Id, dvd.Titre, dvd.Image, dvd.IdGenre, dvd.Genre, dvd.IdPublic, dvd.Public, dvd.IdRayon, dvd.Rayon);
+                if (!AjouterDocument(document))
+                {
+                    throw new Exception();
+                }
+                if (!AjouterLivreDvd(dvd.Id))
+                {
+                    throw new Exception();
+                }
+                string req = "insert into dvd(id, synopsis, realisateur, duree) values (@id, @synopsis, @realisateur, @duree)";
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", dvd.Id},
+                    { "@synopsis", dvd.Synopsis},
+                    { "@realisateur", dvd.Realisateur},
+                    { "@duree", dvd.Duree}
+                };
+                BddMySql curs = BddMySql.GetInstance(connectionString);
+                curs.ReqUpdate(req, parameters);
+                curs.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Modification d'un livre
+        /// </summary>
+        /// <param name="revue">document à modifier</param>
+        /// <returns>true si la modification à pu se faire</returns>
+        public static bool AjouterRevue(Revue revue)
+        {
+            try
+            {
+                Document document = new Document(revue.Id, revue.Titre, revue.Image, revue.IdGenre, revue.Genre, revue.IdPublic, revue.Public, revue.IdRayon, revue.Rayon);
+                if (!AjouterDocument(document))
+                {
+                    throw new Exception();
+                }
+                string req = "insert into revue (id, empruntable, periodicite, delaiMiseADispo) values (@id, @empruntable, @periodicite, @delaiMiseADispo)";
+                Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@id", revue.Id},
+                    { "@empruntable", revue.Empruntable},
+                    { "@periodicite", revue.Periodicite},
+                    { "@delaiMiseADispo", revue.DelaiMiseADispo}
+                };
+                BddMySql curs = BddMySql.GetInstance(connectionString);
+                curs.ReqUpdate(req, parameters);
+                curs.Close();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
