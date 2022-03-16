@@ -6,7 +6,7 @@ using Mediatek86.vue;
 
 namespace Mediatek86.controleur
 {
-    internal class Controle
+    public class Controle
     {
         private readonly List<Livre> lesLivres;
         private readonly List<Dvd> lesDvd;
@@ -152,6 +152,32 @@ namespace Mediatek86.controleur
         public void AjouterRevue(Revue revue)
         {
             Dao.AjouterRevue(revue);
+        }
+        /// <summary>
+        /// Permet de récuparer toutes les commandes d'un Livre_Dvd
+        /// </summary>
+        /// <param name="idLivre_Dvd"></param>
+        /// <returns></returns>
+        public List<Commande> GetAllCommandes(string idLivre_Dvd)
+        {
+            return Dao.GetAllCommandes(idLivre_Dvd);
+        }
+        /// <summary>
+        /// Ouvrir la nouvelle feunetre des commandes
+        /// </summary>
+        /// <param name="objet"></param>
+        public void OuvrirCommande(object objet)
+        {
+            FrmCommandes frmCommande = new FrmCommandes(objet, this);
+            frmCommande.ShowDialog();
+        }
+        /// <summary>
+        /// Retourne tous les suivis possibles
+        /// </summary>
+        /// <returns></returns>
+        public List<Suivi> GetAllSuivi()
+        {
+            return Dao.GetAllSuivi();
         }
     }
 

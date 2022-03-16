@@ -77,6 +77,7 @@ namespace Mediatek86.bdd
             }
             catch (MySqlException e)
             {
+                MessageBox.Show(e.Message, "Erreur dans la BDD", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine(e.Message);
             }
             catch (InvalidOperationException e)

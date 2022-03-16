@@ -120,6 +120,64 @@ namespace Mediatek86.modele
 
             return lesLivres;
         }
+        /// <summary>
+        /// Retourne toutes les etats de suivis
+        /// </summary>
+        /// <returns>Liste d'objets Suivi</returns>
+        public static List<Suivi> GetAllSuivi()
+        {
+            List<Suivi> lesSuivis = new List<Suivi>();
+            string req = "select * from suivi";
+
+            BddMySql curs = BddMySql.GetInstance(connectionString);
+            curs.ReqSelect(req, null);
+
+            while (curs.Read())
+            {
+                int id = (int)curs.Field("id");
+                string libelle = (string)curs.Field("libelle");
+                Suivi suivi = new Suivi(id, libelle);
+                lesSuivis.Add(suivi);
+            }
+            curs.Close();
+
+            return lesSuivis;
+        }
+        /// <summary>
+        /// Retourne toutes les commande à partir de l'id d'un livre_dvd
+        /// </summary>
+        /// <returns>Liste d'objets Commande</returns>
+        public static List<Commande> GetAllCommandes(string idLivre_Dvd)
+        {
+            List<Commande> lesCommandes = new List<Commande>();
+            string req = "Select d.id, d.nbExemplaire, d.idLivreDvd, d.idSuivi, s.libelle as suivi, c.dateCommande, c.montant ";
+            req += "from commandedocument d join commande c on d.id=c.id ";
+            req += "join suivi s on s.id=d.idSuivi ";
+            req += "where d.idLivreDvd = @idLivreDvd";
+            //req += "order by dateCommande DESC";
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@idLivreDvd", idLivre_Dvd}
+                };
+            BddMySql curs = BddMySql.GetInstance(connectionString);
+            curs.ReqSelect(req, parameters);
+
+            while (curs.Read())
+            {
+                string id = (string)curs.Field("id");
+                int nbExemplaire = (int)curs.Field("nbExemplaire");
+                string idLivreDvd = (string)curs.Field("idLivreDvd");
+                int idSuivi = (int)curs.Field("idSuivi");
+                string suivi = (string)curs.Field("suivi");
+                DateTime dateCommande = (DateTime)curs.Field("dateCommande");
+                double montant = (double)curs.Field("montant");
+                Commande commande = new Commande(dateCommande,montant,id,nbExemplaire,idLivreDvd,idSuivi, suivi);
+                lesCommandes.Add(commande);
+            }
+            curs.Close();
+
+            return lesCommandes;
+        }
 
         /// <summary>
         /// Retourne toutes les dvd à partir de la BDD

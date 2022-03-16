@@ -54,6 +54,7 @@ namespace Mediatek86.vue
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.grpLivresRecherche = new System.Windows.Forms.GroupBox();
+            this.btnAjouterLivre = new System.Windows.Forms.Button();
             this.btnModifierLivre = new System.Windows.Forms.Button();
             this.btnSupprLivre = new System.Windows.Forms.Button();
             this.btnLivresAnnulRayons = new System.Windows.Forms.Button();
@@ -95,6 +96,7 @@ namespace Mediatek86.vue
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.grpDvdRecherche = new System.Windows.Forms.GroupBox();
+            this.btnAjouterDvd = new System.Windows.Forms.Button();
             this.btnModifierDvd = new System.Windows.Forms.Button();
             this.btnSupprDvd = new System.Windows.Forms.Button();
             this.btnDvdAnnulRayons = new System.Windows.Forms.Button();
@@ -114,6 +116,9 @@ namespace Mediatek86.vue
             this.txbDvdTitreRecherche = new System.Windows.Forms.TextBox();
             this.tabRevues = new System.Windows.Forms.TabPage();
             this.grpRevuesInfos = new System.Windows.Forms.GroupBox();
+            this.comboRevuePublic = new System.Windows.Forms.ComboBox();
+            this.comboRevueRayon = new System.Windows.Forms.ComboBox();
+            this.comboRevueGenre = new System.Windows.Forms.ComboBox();
             this.btnAnnulerRevue = new System.Windows.Forms.Button();
             this.btnValideModifRevue = new System.Windows.Forms.Button();
             this.chkRevuesEmpruntable = new System.Windows.Forms.CheckBox();
@@ -133,6 +138,7 @@ namespace Mediatek86.vue
             this.label47 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.grpRevuesRecherche = new System.Windows.Forms.GroupBox();
+            this.btnAjouterRevue = new System.Windows.Forms.Button();
             this.btnModifierRevue = new System.Windows.Forms.Button();
             this.btnSupprRevues = new System.Windows.Forms.Button();
             this.btnRevuesAnnulRayons = new System.Windows.Forms.Button();
@@ -186,12 +192,7 @@ namespace Mediatek86.vue
             this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.btnReceptionRechercher = new System.Windows.Forms.Button();
-            this.comboRevuePublic = new System.Windows.Forms.ComboBox();
-            this.comboRevueRayon = new System.Windows.Forms.ComboBox();
-            this.comboRevueGenre = new System.Windows.Forms.ComboBox();
-            this.btnAjouterLivre = new System.Windows.Forms.Button();
-            this.btnAjouterDvd = new System.Windows.Forms.Button();
-            this.btnAjouterRevue = new System.Windows.Forms.Button();
+            this.btnCommandeLivre = new System.Windows.Forms.Button();
             this.tabOngletsApplication.SuspendLayout();
             this.tabLivres.SuspendLayout();
             this.grpLivresInfos.SuspendLayout();
@@ -466,6 +467,7 @@ namespace Mediatek86.vue
             // 
             // grpLivresRecherche
             // 
+            this.grpLivresRecherche.Controls.Add(this.btnCommandeLivre);
             this.grpLivresRecherche.Controls.Add(this.btnAjouterLivre);
             this.grpLivresRecherche.Controls.Add(this.btnModifierLivre);
             this.grpLivresRecherche.Controls.Add(this.btnSupprLivre);
@@ -491,11 +493,23 @@ namespace Mediatek86.vue
             this.grpLivresRecherche.TabStop = false;
             this.grpLivresRecherche.Text = "Recherches";
             // 
+            // btnAjouterLivre
+            // 
+            this.btnAjouterLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjouterLivre.ForeColor = System.Drawing.Color.Black;
+            this.btnAjouterLivre.Location = new System.Drawing.Point(27, 87);
+            this.btnAjouterLivre.Name = "btnAjouterLivre";
+            this.btnAjouterLivre.Size = new System.Drawing.Size(96, 22);
+            this.btnAjouterLivre.TabIndex = 19;
+            this.btnAjouterLivre.Text = "Ajouter";
+            this.btnAjouterLivre.UseVisualStyleBackColor = true;
+            this.btnAjouterLivre.Click += new System.EventHandler(this.btnAjouterLivre_Click);
+            // 
             // btnModifierLivre
             // 
             this.btnModifierLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifierLivre.ForeColor = System.Drawing.Color.Black;
-            this.btnModifierLivre.Location = new System.Drawing.Point(191, 108);
+            this.btnModifierLivre.Location = new System.Drawing.Point(172, 87);
             this.btnModifierLivre.Name = "btnModifierLivre";
             this.btnModifierLivre.Size = new System.Drawing.Size(96, 22);
             this.btnModifierLivre.TabIndex = 18;
@@ -507,7 +521,7 @@ namespace Mediatek86.vue
             // 
             this.btnSupprLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSupprLivre.ForeColor = System.Drawing.Color.Red;
-            this.btnSupprLivre.Location = new System.Drawing.Point(314, 108);
+            this.btnSupprLivre.Location = new System.Drawing.Point(314, 87);
             this.btnSupprLivre.Name = "btnSupprLivre";
             this.btnSupprLivre.Size = new System.Drawing.Size(96, 22);
             this.btnSupprLivre.TabIndex = 17;
@@ -928,6 +942,18 @@ namespace Mediatek86.vue
             this.grpDvdRecherche.TabStop = false;
             this.grpDvdRecherche.Text = "Recherches";
             // 
+            // btnAjouterDvd
+            // 
+            this.btnAjouterDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjouterDvd.ForeColor = System.Drawing.Color.Black;
+            this.btnAjouterDvd.Location = new System.Drawing.Point(67, 108);
+            this.btnAjouterDvd.Name = "btnAjouterDvd";
+            this.btnAjouterDvd.Size = new System.Drawing.Size(96, 22);
+            this.btnAjouterDvd.TabIndex = 20;
+            this.btnAjouterDvd.Text = "Ajouter";
+            this.btnAjouterDvd.UseVisualStyleBackColor = true;
+            this.btnAjouterDvd.Click += new System.EventHandler(this.btnAjouterDvd_Click);
+            // 
             // btnModifierDvd
             // 
             this.btnModifierDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1146,6 +1172,30 @@ namespace Mediatek86.vue
             this.grpRevuesInfos.TabStop = false;
             this.grpRevuesInfos.Text = "Informations détaillées";
             // 
+            // comboRevuePublic
+            // 
+            this.comboRevuePublic.FormattingEnabled = true;
+            this.comboRevuePublic.Location = new System.Drawing.Point(150, 145);
+            this.comboRevuePublic.Name = "comboRevuePublic";
+            this.comboRevuePublic.Size = new System.Drawing.Size(207, 21);
+            this.comboRevuePublic.TabIndex = 42;
+            // 
+            // comboRevueRayon
+            // 
+            this.comboRevueRayon.FormattingEnabled = true;
+            this.comboRevueRayon.Location = new System.Drawing.Point(150, 170);
+            this.comboRevueRayon.Name = "comboRevueRayon";
+            this.comboRevueRayon.Size = new System.Drawing.Size(207, 21);
+            this.comboRevueRayon.TabIndex = 41;
+            // 
+            // comboRevueGenre
+            // 
+            this.comboRevueGenre.FormattingEnabled = true;
+            this.comboRevueGenre.Location = new System.Drawing.Point(150, 119);
+            this.comboRevueGenre.Name = "comboRevueGenre";
+            this.comboRevueGenre.Size = new System.Drawing.Size(207, 21);
+            this.comboRevueGenre.TabIndex = 40;
+            // 
             // btnAnnulerRevue
             // 
             this.btnAnnulerRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1340,6 +1390,18 @@ namespace Mediatek86.vue
             this.grpRevuesRecherche.TabIndex = 19;
             this.grpRevuesRecherche.TabStop = false;
             this.grpRevuesRecherche.Text = "Recherches";
+            // 
+            // btnAjouterRevue
+            // 
+            this.btnAjouterRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAjouterRevue.ForeColor = System.Drawing.Color.Black;
+            this.btnAjouterRevue.Location = new System.Drawing.Point(72, 108);
+            this.btnAjouterRevue.Name = "btnAjouterRevue";
+            this.btnAjouterRevue.Size = new System.Drawing.Size(96, 22);
+            this.btnAjouterRevue.TabIndex = 21;
+            this.btnAjouterRevue.Text = "Ajouter";
+            this.btnAjouterRevue.UseVisualStyleBackColor = true;
+            this.btnAjouterRevue.Click += new System.EventHandler(this.btnAjouterRevue_Click);
             // 
             // btnModifierRevue
             // 
@@ -1894,65 +1956,17 @@ namespace Mediatek86.vue
             this.btnReceptionRechercher.UseVisualStyleBackColor = true;
             this.btnReceptionRechercher.Click += new System.EventHandler(this.btnReceptionRechercher_Click);
             // 
-            // comboRevuePublic
+            // btnCommandeLivre
             // 
-            this.comboRevuePublic.FormattingEnabled = true;
-            this.comboRevuePublic.Location = new System.Drawing.Point(150, 145);
-            this.comboRevuePublic.Name = "comboRevuePublic";
-            this.comboRevuePublic.Size = new System.Drawing.Size(207, 21);
-            this.comboRevuePublic.TabIndex = 42;
-            // 
-            // comboRevueRayon
-            // 
-            this.comboRevueRayon.FormattingEnabled = true;
-            this.comboRevueRayon.Location = new System.Drawing.Point(150, 170);
-            this.comboRevueRayon.Name = "comboRevueRayon";
-            this.comboRevueRayon.Size = new System.Drawing.Size(207, 21);
-            this.comboRevueRayon.TabIndex = 41;
-            // 
-            // comboRevueGenre
-            // 
-            this.comboRevueGenre.FormattingEnabled = true;
-            this.comboRevueGenre.Location = new System.Drawing.Point(150, 119);
-            this.comboRevueGenre.Name = "comboRevueGenre";
-            this.comboRevueGenre.Size = new System.Drawing.Size(207, 21);
-            this.comboRevueGenre.TabIndex = 40;
-            // 
-            // btnAjouterLivre
-            // 
-            this.btnAjouterLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjouterLivre.ForeColor = System.Drawing.Color.Black;
-            this.btnAjouterLivre.Location = new System.Drawing.Point(67, 108);
-            this.btnAjouterLivre.Name = "btnAjouterLivre";
-            this.btnAjouterLivre.Size = new System.Drawing.Size(96, 22);
-            this.btnAjouterLivre.TabIndex = 19;
-            this.btnAjouterLivre.Text = "Ajouter";
-            this.btnAjouterLivre.UseVisualStyleBackColor = true;
-            this.btnAjouterLivre.Click += new System.EventHandler(this.btnAjouterLivre_Click);
-            // 
-            // btnAjouterDvd
-            // 
-            this.btnAjouterDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjouterDvd.ForeColor = System.Drawing.Color.Black;
-            this.btnAjouterDvd.Location = new System.Drawing.Point(67, 108);
-            this.btnAjouterDvd.Name = "btnAjouterDvd";
-            this.btnAjouterDvd.Size = new System.Drawing.Size(96, 22);
-            this.btnAjouterDvd.TabIndex = 20;
-            this.btnAjouterDvd.Text = "Ajouter";
-            this.btnAjouterDvd.UseVisualStyleBackColor = true;
-            this.btnAjouterDvd.Click += new System.EventHandler(this.btnAjouterDvd_Click);
-            // 
-            // btnAjouterRevue
-            // 
-            this.btnAjouterRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAjouterRevue.ForeColor = System.Drawing.Color.Black;
-            this.btnAjouterRevue.Location = new System.Drawing.Point(72, 108);
-            this.btnAjouterRevue.Name = "btnAjouterRevue";
-            this.btnAjouterRevue.Size = new System.Drawing.Size(96, 22);
-            this.btnAjouterRevue.TabIndex = 21;
-            this.btnAjouterRevue.Text = "Ajouter";
-            this.btnAjouterRevue.UseVisualStyleBackColor = true;
-            this.btnAjouterRevue.Click += new System.EventHandler(this.btnAjouterRevue_Click);
+            this.btnCommandeLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCommandeLivre.ForeColor = System.Drawing.Color.Black;
+            this.btnCommandeLivre.Location = new System.Drawing.Point(6, 122);
+            this.btnCommandeLivre.Name = "btnCommandeLivre";
+            this.btnCommandeLivre.Size = new System.Drawing.Size(170, 22);
+            this.btnCommandeLivre.TabIndex = 20;
+            this.btnCommandeLivre.Text = "Accéder aux commandes";
+            this.btnCommandeLivre.UseVisualStyleBackColor = true;
+            this.btnCommandeLivre.Click += new System.EventHandler(this.btnCommandeLivre_Click);
             // 
             // FrmMediatek
             // 
@@ -2162,6 +2176,7 @@ namespace Mediatek86.vue
         private System.Windows.Forms.Button btnAjouterLivre;
         private System.Windows.Forms.Button btnAjouterDvd;
         private System.Windows.Forms.Button btnAjouterRevue;
+        private System.Windows.Forms.Button btnCommandeLivre;
     }
 }
 
