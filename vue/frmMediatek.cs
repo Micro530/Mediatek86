@@ -97,8 +97,8 @@ namespace Mediatek86.vue
                 {
                     case "btnValiderModificationLivre":
                         Livre unLivre = new Livre(txbLivresNumero.Text, txbLivresTitre.Text, txbLivresImage.Text, txbLivresIsbn.Text, txbLivresAuteur.Text, txbLivresCollection.Text,
-                    ((Genre)comboLivreGenre.SelectedValue).Id, ((Genre)comboLivreGenre.SelectedValue).Libelle, ((Public)comboLivrePublic.SelectedValue).Id,
-                    ((Public)comboLivrePublic.SelectedValue).Libelle, ((Rayon)comboLivreRayon.SelectedValue).Id, ((Rayon)comboLivreRayon.SelectedValue).Libelle);
+                            ((Genre)comboLivreGenre.SelectedValue).Id, ((Genre)comboLivreGenre.SelectedValue).Libelle, ((Public)comboLivrePublic.SelectedValue).Id,
+                            ((Public)comboLivrePublic.SelectedValue).Libelle, ((Rayon)comboLivreRayon.SelectedValue).Id, ((Rayon)comboLivreRayon.SelectedValue).Libelle);
                         controle.ModifierLivre(unLivre);
                         RemplirLivresListeComplete(controle.GetAllLivres());
                         grpLivresInfos.Enabled = false;
@@ -132,8 +132,8 @@ namespace Mediatek86.vue
                     case "btnValiderModificationLivre":
                         int idLivreTemp = this.lesLivres.Max((Livre l) => int.Parse(l.Id)) + 1;
                         Livre unLivre = new Livre(conversionIDBdd(idLivreTemp), txbLivresTitre.Text, txbLivresImage.Text, txbLivresIsbn.Text, txbLivresAuteur.Text, txbLivresCollection.Text,
-                    ((Genre)comboLivreGenre.SelectedValue).Id, ((Genre)comboLivreGenre.SelectedValue).Libelle, ((Public)comboLivrePublic.SelectedValue).Id,
-                    ((Public)comboLivrePublic.SelectedValue).Libelle, ((Rayon)comboLivreRayon.SelectedValue).Id, ((Rayon)comboLivreRayon.SelectedValue).Libelle);
+                            ((Genre)comboLivreGenre.SelectedValue).Id, ((Genre)comboLivreGenre.SelectedValue).Libelle, ((Public)comboLivrePublic.SelectedValue).Id,
+                            ((Public)comboLivrePublic.SelectedValue).Libelle, ((Rayon)comboLivreRayon.SelectedValue).Id, ((Rayon)comboLivreRayon.SelectedValue).Libelle);
                         controle.AjouterLivre(unLivre);
                         RemplirLivresListeComplete(controle.GetAllLivres());
                         grpLivresInfos.Enabled = false;
@@ -1626,9 +1626,24 @@ namespace Mediatek86.vue
 
 
 
+
+
         #endregion
-        
-        
-        
+        /// <summary>
+        /// Evenement du clique sur le btnCommandeLivre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCommandeLivre_Click(object sender, EventArgs e)
+        {
+            if (dgvLivresListe.CurrentCell.RowIndex != -1)
+            {
+                controle.OuvrirCommande((Livre)dgvLivresListe.CurrentRow.DataBoundItem);
+            }
+            else
+            {
+                MessageBox.Show("Vous devez selectionner un livre avant de pourvoir accèder aux commandes", "Erreur de selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
 }

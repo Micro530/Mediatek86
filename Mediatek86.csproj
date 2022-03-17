@@ -99,11 +99,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controleur\Controle.cs" />
+    <Compile Include="metier\Commande.cs" />
+    <Compile Include="metier\CommandeDocument.cs" />
     <Compile Include="metier\Dvd.cs" />
     <Compile Include="metier\Etat.cs" />
     <Compile Include="metier\LivreDvd.cs" />
     <Compile Include="metier\Public.cs" />
     <Compile Include="metier\Rayon.cs" />
+    <Compile Include="metier\Suivi.cs" />
     <Compile Include="modele\Dao.cs" />
     <Compile Include="bdd\BddMySql.cs" />
     <Compile Include="metier\Categorie.cs" />
@@ -111,6 +114,18 @@
     <Compile Include="metier\Livre.cs" />
     <Compile Include="metier\Exemplaire.cs" />
     <Compile Include="metier\Revue.cs" />
+    <Compile Include="vue\FrmCommandes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vue\FrmCommandes.Designer.cs">
+      <DependentUpon>FrmCommandes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vue\ControleUtilisateur\UsrcCommandeLivre.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="vue\ControleUtilisateur\UsrcCommandeLivre.Designer.cs">
+      <DependentUpon>UsrcCommandeLivre.cs</DependentUpon>
+    </Compile>
     <Compile Include="vue\FrmMediatek.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +144,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="vue\FrmCommandes.resx">
+      <DependentUpon>FrmCommandes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vue\ControleUtilisateur\UsrcCommandeLivre.resx">
+      <DependentUpon>UsrcCommandeLivre.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="vue\FrmMediatek.resx">
       <DependentUpon>FrmMediatek.cs</DependentUpon>
     </EmbeddedResource>
