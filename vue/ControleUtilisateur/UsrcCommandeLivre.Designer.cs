@@ -37,17 +37,17 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnModifierCommandeLivre = new System.Windows.Forms.Button();
             this.btnAjoutCommandeLivre = new System.Windows.Forms.Button();
             this.grbInfoCommande = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtDateCommande = new System.Windows.Forms.TextBox();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtMontant = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtNbExemplaire = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.comboSuivi = new System.Windows.Forms.ComboBox();
-            this.btnValiderModif = new System.Windows.Forms.Button();
+            this.CalendrierCommandeLivre = new System.Windows.Forms.MonthCalendar();
             this.btnAnnulerModif = new System.Windows.Forms.Button();
+            this.btnValiderModifCommandeLivre = new System.Windows.Forms.Button();
+            this.comboSuivi = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtNbExemplaire = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtMontant = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListCommande)).BeginInit();
             this.grbListCommande.SuspendLayout();
             this.grbInfoCommande.SuspendLayout();
@@ -98,6 +98,7 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnRetourDoc.TabIndex = 5;
             this.btnRetourDoc.Text = "Retour aux Documents";
             this.btnRetourDoc.UseVisualStyleBackColor = true;
+            this.btnRetourDoc.Click += new System.EventHandler(this.btnRetourDoc_Click);
             // 
             // btnSupprimerCommandeLivre
             // 
@@ -108,6 +109,7 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnSupprimerCommandeLivre.TabIndex = 4;
             this.btnSupprimerCommandeLivre.Text = "Supprimer la commande selectionnée";
             this.btnSupprimerCommandeLivre.UseVisualStyleBackColor = true;
+            this.btnSupprimerCommandeLivre.Click += new System.EventHandler(this.btnSupprimerCommandeLivre_Click);
             // 
             // btnModifierCommandeLivre
             // 
@@ -117,6 +119,7 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnModifierCommandeLivre.TabIndex = 3;
             this.btnModifierCommandeLivre.Text = "Modifier la commande selectionnée";
             this.btnModifierCommandeLivre.UseVisualStyleBackColor = true;
+            this.btnModifierCommandeLivre.Click += new System.EventHandler(this.btnModifierCommandeLivre_Click);
             // 
             // btnAjoutCommandeLivre
             // 
@@ -126,11 +129,13 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnAjoutCommandeLivre.TabIndex = 2;
             this.btnAjoutCommandeLivre.Text = "Ajouter une commande pour ce livre";
             this.btnAjoutCommandeLivre.UseVisualStyleBackColor = true;
+            this.btnAjoutCommandeLivre.Click += new System.EventHandler(this.btnAjoutCommandeLivre_Click);
             // 
             // grbInfoCommande
             // 
+            this.grbInfoCommande.Controls.Add(this.CalendrierCommandeLivre);
             this.grbInfoCommande.Controls.Add(this.btnAnnulerModif);
-            this.grbInfoCommande.Controls.Add(this.btnValiderModif);
+            this.grbInfoCommande.Controls.Add(this.btnValiderModifCommandeLivre);
             this.grbInfoCommande.Controls.Add(this.comboSuivi);
             this.grbInfoCommande.Controls.Add(this.label4);
             this.grbInfoCommande.Controls.Add(this.txtNbExemplaire);
@@ -138,96 +143,96 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.grbInfoCommande.Controls.Add(this.txtMontant);
             this.grbInfoCommande.Controls.Add(this.label2);
             this.grbInfoCommande.Controls.Add(this.label1);
-            this.grbInfoCommande.Controls.Add(this.txtDateCommande);
             this.grbInfoCommande.Enabled = false;
             this.grbInfoCommande.Location = new System.Drawing.Point(10, 364);
             this.grbInfoCommande.Name = "grbInfoCommande";
-            this.grbInfoCommande.Size = new System.Drawing.Size(859, 258);
+            this.grbInfoCommande.Size = new System.Drawing.Size(859, 281);
             this.grbInfoCommande.TabIndex = 3;
             this.grbInfoCommande.TabStop = false;
             // 
-            // label1
+            // CalendrierCommandeLivre
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 37);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Date de la commande";
-            // 
-            // txtDateCommande
-            // 
-            this.txtDateCommande.Location = new System.Drawing.Point(131, 34);
-            this.txtDateCommande.Name = "txtDateCommande";
-            this.txtDateCommande.Size = new System.Drawing.Size(273, 20);
-            this.txtDateCommande.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(460, 37);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Montant";
-            // 
-            // txtMontant
-            // 
-            this.txtMontant.Location = new System.Drawing.Point(512, 34);
-            this.txtMontant.Name = "txtMontant";
-            this.txtMontant.Size = new System.Drawing.Size(179, 20);
-            this.txtMontant.TabIndex = 3;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 90);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Nombre d\'exemplaires";
-            // 
-            // txtNbExemplaire
-            // 
-            this.txtNbExemplaire.Location = new System.Drawing.Point(130, 87);
-            this.txtNbExemplaire.Name = "txtNbExemplaire";
-            this.txtNbExemplaire.Size = new System.Drawing.Size(274, 20);
-            this.txtNbExemplaire.TabIndex = 5;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(441, 90);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "État de suivi";
-            // 
-            // comboSuivi
-            // 
-            this.comboSuivi.FormattingEnabled = true;
-            this.comboSuivi.Location = new System.Drawing.Point(512, 86);
-            this.comboSuivi.Name = "comboSuivi";
-            this.comboSuivi.Size = new System.Drawing.Size(179, 21);
-            this.comboSuivi.TabIndex = 7;
-            // 
-            // btnValiderModif
-            // 
-            this.btnValiderModif.Location = new System.Drawing.Point(17, 171);
-            this.btnValiderModif.Name = "btnValiderModif";
-            this.btnValiderModif.Size = new System.Drawing.Size(136, 57);
-            this.btnValiderModif.TabIndex = 8;
-            this.btnValiderModif.Text = "Valider les modifications";
-            this.btnValiderModif.UseVisualStyleBackColor = true;
+            this.CalendrierCommandeLivre.Location = new System.Drawing.Point(61, 34);
+            this.CalendrierCommandeLivre.Name = "CalendrierCommandeLivre";
+            this.CalendrierCommandeLivre.TabIndex = 10;
             // 
             // btnAnnulerModif
             // 
-            this.btnAnnulerModif.Location = new System.Drawing.Point(191, 171);
+            this.btnAnnulerModif.Location = new System.Drawing.Point(191, 218);
             this.btnAnnulerModif.Name = "btnAnnulerModif";
             this.btnAnnulerModif.Size = new System.Drawing.Size(136, 57);
             this.btnAnnulerModif.TabIndex = 9;
             this.btnAnnulerModif.Text = "Annuler";
             this.btnAnnulerModif.UseVisualStyleBackColor = true;
+            this.btnAnnulerModif.Click += new System.EventHandler(this.btnAnnulerModif_Click);
+            // 
+            // btnValiderModifCommandeLivre
+            // 
+            this.btnValiderModifCommandeLivre.Location = new System.Drawing.Point(17, 218);
+            this.btnValiderModifCommandeLivre.Name = "btnValiderModifCommandeLivre";
+            this.btnValiderModifCommandeLivre.Size = new System.Drawing.Size(136, 57);
+            this.btnValiderModifCommandeLivre.TabIndex = 8;
+            this.btnValiderModifCommandeLivre.Text = "Valider les modifications";
+            this.btnValiderModifCommandeLivre.UseVisualStyleBackColor = true;
+            this.btnValiderModifCommandeLivre.Click += new System.EventHandler(this.btnValiderModif_Click);
+            // 
+            // comboSuivi
+            // 
+            this.comboSuivi.FormattingEnabled = true;
+            this.comboSuivi.Location = new System.Drawing.Point(460, 106);
+            this.comboSuivi.Name = "comboSuivi";
+            this.comboSuivi.Size = new System.Drawing.Size(179, 21);
+            this.comboSuivi.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(389, 110);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(65, 13);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "État de suivi";
+            // 
+            // txtNbExemplaire
+            // 
+            this.txtNbExemplaire.Location = new System.Drawing.Point(460, 176);
+            this.txtNbExemplaire.Name = "txtNbExemplaire";
+            this.txtNbExemplaire.Size = new System.Drawing.Size(274, 20);
+            this.txtNbExemplaire.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(344, 179);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(110, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Nombre d\'exemplaires";
+            // 
+            // txtMontant
+            // 
+            this.txtMontant.Location = new System.Drawing.Point(460, 44);
+            this.txtMontant.Name = "txtMontant";
+            this.txtMontant.Size = new System.Drawing.Size(179, 20);
+            this.txtMontant.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(408, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Montant";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(125, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(111, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Date de la commande";
             // 
             // UsrcCommandeLivre
             // 
@@ -258,7 +263,6 @@ namespace Mediatek86.vue.ControleUtilisateur
         private System.Windows.Forms.GroupBox grbInfoCommande;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtDateCommande;
         private System.Windows.Forms.ComboBox comboSuivi;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtNbExemplaire;
@@ -266,6 +270,7 @@ namespace Mediatek86.vue.ControleUtilisateur
         private System.Windows.Forms.TextBox txtMontant;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAnnulerModif;
-        private System.Windows.Forms.Button btnValiderModif;
+        private System.Windows.Forms.Button btnValiderModifCommandeLivre;
+        private System.Windows.Forms.MonthCalendar CalendrierCommandeLivre;
     }
 }

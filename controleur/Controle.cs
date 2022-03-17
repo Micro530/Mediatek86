@@ -179,6 +179,22 @@ namespace Mediatek86.controleur
         {
             return Dao.GetAllSuivi();
         }
+        /// <summary>
+        /// creer une commande de livre dvd
+        /// </summary>
+        /// <param name="commande"></param>
+        public void CreerCommandeLivreDvd(Commande commande)
+        {
+            Dao.CreerCommandeLivreDvd(commande);
+        }
+        public void ModifierCommandeLivreDvd(Commande commande)
+        {
+            Dao.ModifierCommandeLivreDvd(commande);
+        }
+        public bool SupprCommandeLivreDvd(Commande commande)
+        {
+            return Dao.SupprCommandeLivreDvd(commande);
+        }
     }
 
 }
