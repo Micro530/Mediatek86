@@ -54,6 +54,7 @@ namespace Mediatek86.vue
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.grpLivresRecherche = new System.Windows.Forms.GroupBox();
+            this.btnCommandeLivre = new System.Windows.Forms.Button();
             this.btnAjouterLivre = new System.Windows.Forms.Button();
             this.btnModifierLivre = new System.Windows.Forms.Button();
             this.btnSupprLivre = new System.Windows.Forms.Button();
@@ -192,7 +193,8 @@ namespace Mediatek86.vue
             this.label54 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.btnReceptionRechercher = new System.Windows.Forms.Button();
-            this.btnCommandeLivre = new System.Windows.Forms.Button();
+            this.btnAccederCommandeDvd = new System.Windows.Forms.Button();
+            this.btnAccederCommandeRevue = new System.Windows.Forms.Button();
             this.tabOngletsApplication.SuspendLayout();
             this.tabLivres.SuspendLayout();
             this.grpLivresInfos.SuspendLayout();
@@ -492,6 +494,18 @@ namespace Mediatek86.vue
             this.grpLivresRecherche.TabIndex = 18;
             this.grpLivresRecherche.TabStop = false;
             this.grpLivresRecherche.Text = "Recherches";
+            // 
+            // btnCommandeLivre
+            // 
+            this.btnCommandeLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCommandeLivre.ForeColor = System.Drawing.Color.Black;
+            this.btnCommandeLivre.Location = new System.Drawing.Point(6, 122);
+            this.btnCommandeLivre.Name = "btnCommandeLivre";
+            this.btnCommandeLivre.Size = new System.Drawing.Size(170, 22);
+            this.btnCommandeLivre.TabIndex = 20;
+            this.btnCommandeLivre.Text = "Accéder aux commandes";
+            this.btnCommandeLivre.UseVisualStyleBackColor = true;
+            this.btnCommandeLivre.Click += new System.EventHandler(this.btnCommandeLivre_Click);
             // 
             // btnAjouterLivre
             // 
@@ -917,6 +931,7 @@ namespace Mediatek86.vue
             // 
             // grpDvdRecherche
             // 
+            this.grpDvdRecherche.Controls.Add(this.btnAccederCommandeDvd);
             this.grpDvdRecherche.Controls.Add(this.btnAjouterDvd);
             this.grpDvdRecherche.Controls.Add(this.btnModifierDvd);
             this.grpDvdRecherche.Controls.Add(this.btnSupprDvd);
@@ -946,7 +961,7 @@ namespace Mediatek86.vue
             // 
             this.btnAjouterDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAjouterDvd.ForeColor = System.Drawing.Color.Black;
-            this.btnAjouterDvd.Location = new System.Drawing.Point(67, 108);
+            this.btnAjouterDvd.Location = new System.Drawing.Point(67, 86);
             this.btnAjouterDvd.Name = "btnAjouterDvd";
             this.btnAjouterDvd.Size = new System.Drawing.Size(96, 22);
             this.btnAjouterDvd.TabIndex = 20;
@@ -958,7 +973,7 @@ namespace Mediatek86.vue
             // 
             this.btnModifierDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifierDvd.ForeColor = System.Drawing.Color.Black;
-            this.btnModifierDvd.Location = new System.Drawing.Point(191, 108);
+            this.btnModifierDvd.Location = new System.Drawing.Point(191, 86);
             this.btnModifierDvd.Name = "btnModifierDvd";
             this.btnModifierDvd.Size = new System.Drawing.Size(96, 22);
             this.btnModifierDvd.TabIndex = 19;
@@ -970,7 +985,7 @@ namespace Mediatek86.vue
             // 
             this.btnSupprDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSupprDvd.ForeColor = System.Drawing.Color.Red;
-            this.btnSupprDvd.Location = new System.Drawing.Point(314, 108);
+            this.btnSupprDvd.Location = new System.Drawing.Point(314, 86);
             this.btnSupprDvd.Name = "btnSupprDvd";
             this.btnSupprDvd.Size = new System.Drawing.Size(96, 22);
             this.btnSupprDvd.TabIndex = 18;
@@ -1366,6 +1381,7 @@ namespace Mediatek86.vue
             // 
             // grpRevuesRecherche
             // 
+            this.grpRevuesRecherche.Controls.Add(this.btnAccederCommandeRevue);
             this.grpRevuesRecherche.Controls.Add(this.btnAjouterRevue);
             this.grpRevuesRecherche.Controls.Add(this.btnModifierRevue);
             this.grpRevuesRecherche.Controls.Add(this.btnSupprRevues);
@@ -1395,7 +1411,7 @@ namespace Mediatek86.vue
             // 
             this.btnAjouterRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAjouterRevue.ForeColor = System.Drawing.Color.Black;
-            this.btnAjouterRevue.Location = new System.Drawing.Point(72, 108);
+            this.btnAjouterRevue.Location = new System.Drawing.Point(72, 87);
             this.btnAjouterRevue.Name = "btnAjouterRevue";
             this.btnAjouterRevue.Size = new System.Drawing.Size(96, 22);
             this.btnAjouterRevue.TabIndex = 21;
@@ -1407,7 +1423,7 @@ namespace Mediatek86.vue
             // 
             this.btnModifierRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnModifierRevue.ForeColor = System.Drawing.Color.Black;
-            this.btnModifierRevue.Location = new System.Drawing.Point(191, 108);
+            this.btnModifierRevue.Location = new System.Drawing.Point(191, 87);
             this.btnModifierRevue.Name = "btnModifierRevue";
             this.btnModifierRevue.Size = new System.Drawing.Size(96, 22);
             this.btnModifierRevue.TabIndex = 20;
@@ -1419,7 +1435,7 @@ namespace Mediatek86.vue
             // 
             this.btnSupprRevues.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSupprRevues.ForeColor = System.Drawing.Color.Red;
-            this.btnSupprRevues.Location = new System.Drawing.Point(314, 108);
+            this.btnSupprRevues.Location = new System.Drawing.Point(314, 87);
             this.btnSupprRevues.Name = "btnSupprRevues";
             this.btnSupprRevues.Size = new System.Drawing.Size(96, 22);
             this.btnSupprRevues.TabIndex = 18;
@@ -1956,17 +1972,29 @@ namespace Mediatek86.vue
             this.btnReceptionRechercher.UseVisualStyleBackColor = true;
             this.btnReceptionRechercher.Click += new System.EventHandler(this.btnReceptionRechercher_Click);
             // 
-            // btnCommandeLivre
+            // btnAccederCommandeDvd
             // 
-            this.btnCommandeLivre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCommandeLivre.ForeColor = System.Drawing.Color.Black;
-            this.btnCommandeLivre.Location = new System.Drawing.Point(6, 122);
-            this.btnCommandeLivre.Name = "btnCommandeLivre";
-            this.btnCommandeLivre.Size = new System.Drawing.Size(170, 22);
-            this.btnCommandeLivre.TabIndex = 20;
-            this.btnCommandeLivre.Text = "Accéder aux commandes";
-            this.btnCommandeLivre.UseVisualStyleBackColor = true;
-            this.btnCommandeLivre.Click += new System.EventHandler(this.btnCommandeLivre_Click);
+            this.btnAccederCommandeDvd.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccederCommandeDvd.ForeColor = System.Drawing.Color.Black;
+            this.btnAccederCommandeDvd.Location = new System.Drawing.Point(9, 122);
+            this.btnAccederCommandeDvd.Name = "btnAccederCommandeDvd";
+            this.btnAccederCommandeDvd.Size = new System.Drawing.Size(170, 22);
+            this.btnAccederCommandeDvd.TabIndex = 21;
+            this.btnAccederCommandeDvd.Text = "Accéder aux commandes";
+            this.btnAccederCommandeDvd.UseVisualStyleBackColor = true;
+            this.btnAccederCommandeDvd.Click += new System.EventHandler(this.btnActiverCommandeDvd_click);
+            // 
+            // btnAccederCommandeRevue
+            // 
+            this.btnAccederCommandeRevue.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccederCommandeRevue.ForeColor = System.Drawing.Color.Black;
+            this.btnAccederCommandeRevue.Location = new System.Drawing.Point(9, 122);
+            this.btnAccederCommandeRevue.Name = "btnAccederCommandeRevue";
+            this.btnAccederCommandeRevue.Size = new System.Drawing.Size(170, 22);
+            this.btnAccederCommandeRevue.TabIndex = 22;
+            this.btnAccederCommandeRevue.Text = "Accéder aux commandes";
+            this.btnAccederCommandeRevue.UseVisualStyleBackColor = true;
+            this.btnAccederCommandeRevue.Click += new System.EventHandler(this.btnAccederCommandeRevue_Click);
             // 
             // FrmMediatek
             // 
@@ -2177,6 +2205,8 @@ namespace Mediatek86.vue
         private System.Windows.Forms.Button btnAjouterDvd;
         private System.Windows.Forms.Button btnAjouterRevue;
         private System.Windows.Forms.Button btnCommandeLivre;
+        private System.Windows.Forms.Button btnAccederCommandeDvd;
+        private System.Windows.Forms.Button btnAccederCommandeRevue;
     }
 }
 

@@ -158,7 +158,7 @@ namespace Mediatek86.controleur
         /// </summary>
         /// <param name="idLivre_Dvd"></param>
         /// <returns></returns>
-        public List<Commande> GetAllCommandes(string idLivre_Dvd)
+        public List<CommandeDoc> GetAllCommandes(string idLivre_Dvd)
         {
             return Dao.GetAllCommandes(idLivre_Dvd);
         }
@@ -183,19 +183,62 @@ namespace Mediatek86.controleur
         /// creer une commande de livre dvd
         /// </summary>
         /// <param name="commande"></param>
-        public void CreerCommandeLivreDvd(Commande commande)
+        public void CreerCommandeLivreDvd(CommandeDoc commande)
         {
             Dao.CreerCommandeLivreDvd(commande);
         }
-        public void ModifierCommandeLivreDvd(Commande commande)
+        /// <summary>
+        /// Permet d'envoyer un commande livreDvd a modifier
+        /// </summary>
+        /// <param name="commande">commande a modifier</param>
+        public void ModifierCommandeLivreDvd(CommandeDoc commande)
         {
             Dao.ModifierCommandeLivreDvd(commande);
         }
-        public bool SupprCommandeLivreDvd(Commande commande)
+        /// <summary>
+        /// Permet de suprimer une commande de Livre_Dvd
+        /// </summary>
+        /// <param name="commande">commande a supprimer</param>
+        /// <returns>si la suppression à pu se faire</returns>
+        public bool SupprCommandeLivreDvd(CommandeDoc commande)
         {
             return Dao.SupprCommandeLivreDvd(commande);
+        }
+        /// <summary>
+        /// récupère est retourne une liste de commandes par rapport a une id de revue
+        /// </summary>
+        /// <param name="idRevue">id recherché</param>
+        /// <returns>une liste de commandes</returns>
+        public List<CommandeAbo> GetAllCommandesRevues(string idRevue)
+        {
+            return Dao.GetAllCommandesRevues(idRevue);
+        }
+        /// <summary>
+        /// Pemret de créer un commandes de revue
+        /// </summary>
+        /// <param name="commandeAbo">la commande a créer</param>
+        public void CreerCommandeRevue(CommandeAbo commandeAbo)
+        {
+            Dao.CreerCommandeRevue(commandeAbo);
+        }
+        /// <summary>
+        /// Permet de supprimer un abonnement
+        /// </summary>
+        /// <param name="idCommande">abonnement à supprimer</param>
+        public void SupprAbonnement(string idCommande)
+        {
+            Dao.SupprAbonnement(idCommande);
+        }
+        /// <summary>
+        /// récupère et retourne les revus avec un abonnement de moins de 30 jours
+        /// </summary>
+        /// <returns></returns>
+        public List<Revue> GetAbonnementMoinsTrenteJours()
+        {
+            return Dao.GetAbonnementMoinsTrenteJours();
         }
     }
 
 }
 
+ 
