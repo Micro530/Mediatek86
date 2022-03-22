@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Mediatek86.metier
 {
-    public class Commande : CommandeDocument
+    public class CommandeAbo : Abonnement
     {
         private string dateCommande;
         private double montant;
 
-        public Commande(string dateCommande, double montant, string id, int nbExemplaire, string idLivreDvd, int idSuivi, string suivi)
-            : base(id, nbExemplaire, idLivreDvd, idSuivi, suivi)
+        public CommandeAbo(string dateCommande, double montant, string id, string dateFinAbonnement, string idRevue)
+            : base(id, dateFinAbonnement, idRevue)
         {
             this.DateCommande = dateCommande;
             this.Montant = montant;

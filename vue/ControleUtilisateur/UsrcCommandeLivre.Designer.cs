@@ -37,16 +37,16 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnModifierCommandeLivre = new System.Windows.Forms.Button();
             this.btnAjoutCommandeLivre = new System.Windows.Forms.Button();
             this.grbInfoCommande = new System.Windows.Forms.GroupBox();
-            this.CalendrierCommandeLivre = new System.Windows.Forms.MonthCalendar();
+            this.calendrierCommandeLivre = new System.Windows.Forms.MonthCalendar();
             this.btnAnnulerModif = new System.Windows.Forms.Button();
             this.btnValiderModifCommandeLivre = new System.Windows.Forms.Button();
             this.comboSuivi = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblCombo = new System.Windows.Forms.Label();
             this.txtNbExemplaire = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblNb = new System.Windows.Forms.Label();
             this.txtMontant = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblDate = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListCommande)).BeginInit();
             this.grbListCommande.SuspendLayout();
@@ -133,16 +133,16 @@ namespace Mediatek86.vue.ControleUtilisateur
             // 
             // grbInfoCommande
             // 
-            this.grbInfoCommande.Controls.Add(this.CalendrierCommandeLivre);
+            this.grbInfoCommande.Controls.Add(this.calendrierCommandeLivre);
             this.grbInfoCommande.Controls.Add(this.btnAnnulerModif);
             this.grbInfoCommande.Controls.Add(this.btnValiderModifCommandeLivre);
             this.grbInfoCommande.Controls.Add(this.comboSuivi);
-            this.grbInfoCommande.Controls.Add(this.label4);
+            this.grbInfoCommande.Controls.Add(this.lblCombo);
             this.grbInfoCommande.Controls.Add(this.txtNbExemplaire);
-            this.grbInfoCommande.Controls.Add(this.label3);
+            this.grbInfoCommande.Controls.Add(this.lblNb);
             this.grbInfoCommande.Controls.Add(this.txtMontant);
             this.grbInfoCommande.Controls.Add(this.label2);
-            this.grbInfoCommande.Controls.Add(this.label1);
+            this.grbInfoCommande.Controls.Add(this.lblDate);
             this.grbInfoCommande.Enabled = false;
             this.grbInfoCommande.Location = new System.Drawing.Point(10, 364);
             this.grbInfoCommande.Name = "grbInfoCommande";
@@ -150,11 +150,11 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.grbInfoCommande.TabIndex = 3;
             this.grbInfoCommande.TabStop = false;
             // 
-            // CalendrierCommandeLivre
+            // calendrierCommandeLivre
             // 
-            this.CalendrierCommandeLivre.Location = new System.Drawing.Point(61, 34);
-            this.CalendrierCommandeLivre.Name = "CalendrierCommandeLivre";
-            this.CalendrierCommandeLivre.TabIndex = 10;
+            this.calendrierCommandeLivre.Location = new System.Drawing.Point(61, 34);
+            this.calendrierCommandeLivre.Name = "calendrierCommandeLivre";
+            this.calendrierCommandeLivre.TabIndex = 10;
             // 
             // btnAnnulerModif
             // 
@@ -184,14 +184,14 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.comboSuivi.Size = new System.Drawing.Size(179, 21);
             this.comboSuivi.TabIndex = 7;
             // 
-            // label4
+            // lblCombo
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(389, 110);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(65, 13);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "État de suivi";
+            this.lblCombo.AutoSize = true;
+            this.lblCombo.Location = new System.Drawing.Point(389, 110);
+            this.lblCombo.Name = "lblCombo";
+            this.lblCombo.Size = new System.Drawing.Size(65, 13);
+            this.lblCombo.TabIndex = 6;
+            this.lblCombo.Text = "État de suivi";
             // 
             // txtNbExemplaire
             // 
@@ -200,14 +200,14 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.txtNbExemplaire.Size = new System.Drawing.Size(274, 20);
             this.txtNbExemplaire.TabIndex = 5;
             // 
-            // label3
+            // lblNb
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(344, 179);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(110, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Nombre d\'exemplaires";
+            this.lblNb.AutoSize = true;
+            this.lblNb.Location = new System.Drawing.Point(344, 179);
+            this.lblNb.Name = "lblNb";
+            this.lblNb.Size = new System.Drawing.Size(110, 13);
+            this.lblNb.TabIndex = 4;
+            this.lblNb.Text = "Nombre d\'exemplaires";
             // 
             // txtMontant
             // 
@@ -225,14 +225,14 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.label2.TabIndex = 2;
             this.label2.Text = "Montant";
             // 
-            // label1
+            // lblDate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(125, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Date de la commande";
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(125, 16);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(111, 13);
+            this.lblDate.TabIndex = 1;
+            this.lblDate.Text = "Date de la commande";
             // 
             // UsrcCommandeLivre
             // 
@@ -262,15 +262,15 @@ namespace Mediatek86.vue.ControleUtilisateur
         private System.Windows.Forms.Button btnAjoutCommandeLivre;
         private System.Windows.Forms.GroupBox grbInfoCommande;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.ComboBox comboSuivi;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblCombo;
         private System.Windows.Forms.TextBox txtNbExemplaire;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNb;
         private System.Windows.Forms.TextBox txtMontant;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAnnulerModif;
         private System.Windows.Forms.Button btnValiderModifCommandeLivre;
-        private System.Windows.Forms.MonthCalendar CalendrierCommandeLivre;
+        private System.Windows.Forms.MonthCalendar calendrierCommandeLivre;
     }
 }

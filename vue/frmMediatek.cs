@@ -16,7 +16,6 @@ namespace Mediatek86.vue
 
         private readonly Controle controle;
         const string ETATNEUF = "00001";
-
         private readonly BindingSource bdgLivresListe = new BindingSource();
         private readonly BindingSource bdgDvdListe = new BindingSource();
         private readonly BindingSource bdgGenres = new BindingSource();
@@ -38,7 +37,10 @@ namespace Mediatek86.vue
 
         #endregion
 
-
+        /// <summary>
+        /// Constructeur
+        /// </summary>
+        /// <param name="controle"></param>
         internal FrmMediatek(Controle controle)
         {
             InitializeComponent();
@@ -46,11 +48,28 @@ namespace Mediatek86.vue
             lesGenres = controle.GetAllGenres();
             lesPublics = controle.GetAllPublics();
             lesRayons = controle.GetAllRayons();
+            messageRevuesMoinsTrenteJours(controle.GetAbonnementMoinsTrenteJours());
         }
 
 
         #region modules communs
-
+        /// <summary>
+        /// Permet de créer le message si des abonnement sont à moins de 30 jours lors de l'ouverture de l'application
+        /// </summary>
+        /// <param name="lesRevues">la liste des revue qui ont moins de 30 jours</param>
+        private void messageRevuesMoinsTrenteJours(List<Revue> lesRevues)
+        {
+            if(lesRevues.Count() > 0)
+            {
+                string message = "Les abonnements  de ces revues de terminent dans moins de 30 jours :\n";
+                foreach (Revue revue in lesRevues)
+                {
+                    message += $"- Revue {revue.Id} - {revue.Titre}\n";
+                }
+                MessageBox.Show(message, "Abonnements presque terminés", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
+        }
         /// <summary>
         /// Rempli un des 3 combo (genre, public, rayon)
         /// </summary>
@@ -164,6 +183,11 @@ namespace Mediatek86.vue
             }
             ajoutEnCours = false;
         }
+        /// <summary>
+        /// Permet de convertire le format de l'id en un format compatible avec ceux utilisé dans la BDD 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         private string conversionIDBdd(int id)
         {
             if (id <= 9)
@@ -573,6 +597,22 @@ namespace Mediatek86.vue
             ajoutEnCours = true;
             VideRevuesInfos();
         }
+        /// <summary>
+        /// Evenement lors du clique sur le btnAccederCommandeRevue
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAccederCommandeRevue_Click(object sender, EventArgs e)
+        {
+            if (dgvRevuesListe.CurrentCell.RowIndex != -1)
+            {
+                controle.OuvrirCommande((Revue)dgvRevuesListe.CurrentRow.DataBoundItem);
+            }
+            else
+            {
+                MessageBox.Show("Vous devez selectionner un DVD avant de pourvoir accèder aux commandes", "Erreur de selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
         #endregion
 
@@ -967,6 +1007,22 @@ namespace Mediatek86.vue
             ajoutEnCours = true;
             VideLivresInfos();
         }
+        /// <summary>
+        /// Evenement du clique sur le btnCommandeLivre
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCommandeLivre_Click(object sender, EventArgs e)
+        {
+            if (dgvLivresListe.CurrentCell.RowIndex != -1)
+            {
+                controle.OuvrirCommande((Livre)dgvLivresListe.CurrentRow.DataBoundItem);
+            }
+            else
+            {
+                MessageBox.Show("Vous devez selectionner un livre avant de pourvoir accèder aux commandes", "Erreur de selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
 
         #endregion
 
@@ -1359,6 +1415,23 @@ namespace Mediatek86.vue
             VideDvdInfos();
         }
 
+        /// <summary>
+        /// Evement lors du clique sur le btnAcederCommandeDVD
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnActiverCommandeDvd_click(object sender, EventArgs e)
+        {
+            if (dgvDvdListe.CurrentCell.RowIndex != -1)
+            {
+                controle.OuvrirCommande((Dvd)dgvDvdListe.CurrentRow.DataBoundItem);
+            }
+            else
+            {
+                MessageBox.Show("Vous devez selectionner un DVD avant de pourvoir accèder aux commandes", "Erreur de selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
         #endregion
 
 
@@ -1629,21 +1702,7 @@ namespace Mediatek86.vue
 
 
         #endregion
-        /// <summary>
-        /// Evenement du clique sur le btnCommandeLivre
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnCommandeLivre_Click(object sender, EventArgs e)
-        {
-            if (dgvLivresListe.CurrentCell.RowIndex != -1)
-            {
-                controle.OuvrirCommande((Livre)dgvLivresListe.CurrentRow.DataBoundItem);
-            }
-            else
-            {
-                MessageBox.Show("Vous devez selectionner un livre avant de pourvoir accèder aux commandes", "Erreur de selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+        
+        
     }
 }
