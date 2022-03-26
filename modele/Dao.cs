@@ -351,6 +351,48 @@ namespace Mediatek86.modele
 
             return lesRevues;
         }
+        /// <summary>
+        /// Retourne le service de l'utilisateur
+        /// </summary>
+        /// <returns>service de l'utilisteur</returns>
+        public static string Authetification(string identifiant, string pwd)
+        {
+            string req = "select service.nom " +
+                "from utilisateur " +
+                "inner join service on service.id = utilisateur.idservice " +
+                "where identifiant = @identifiant " +
+                "and pwd = @pwd";
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "@identifiant", identifiant},
+                    { "@pwd", GetStringSha256Hash(pwd)}
+                };
+            BddMySql curs = BddMySql.GetInstance(connectionString);
+            curs.ReqSelect(req, parameters);
+
+            curs.Read();
+            string service = (string)curs.Field("nom");
+            curs.Close();
+
+            return service;
+        }
+        /// <summary>
+        /// Transformation d'une chaîne avec SHA256 (pour le pwd)
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        internal static string GetStringSha256Hash(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+                return string.Empty;
+
+            using (var sha = new System.Security.Cryptography.SHA256Managed())
+            {
+                byte[] textData = System.Text.Encoding.UTF8.GetBytes(text);
+                byte[] hash = sha.ComputeHash(textData);
+                return BitConverter.ToString(hash).Replace("-", string.Empty);
+            }
+        }
         #endregion
 
         /// <summary>

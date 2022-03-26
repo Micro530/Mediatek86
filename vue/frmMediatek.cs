@@ -34,6 +34,7 @@ namespace Mediatek86.vue
         private List<Categorie> lesPublics = new List<Categorie>();
         private List<Categorie> lesRayons = new List<Categorie>();
         private bool ajoutEnCours;
+        private string service;
 
         #endregion
 
@@ -41,14 +42,18 @@ namespace Mediatek86.vue
         /// Constructeur
         /// </summary>
         /// <param name="controle"></param>
-        internal FrmMediatek(Controle controle)
+        internal FrmMediatek(Controle controle, string service)
         {
             InitializeComponent();
             this.controle = controle;
+            this.service = service;
             lesGenres = controle.GetAllGenres();
             lesPublics = controle.GetAllPublics();
             lesRayons = controle.GetAllRayons();
-            messageRevuesMoinsTrenteJours(controle.GetAbonnementMoinsTrenteJours());
+            if (!service.Equals("prêt"))
+            {
+                messageRevuesMoinsTrenteJours(controle.GetAbonnementMoinsTrenteJours());
+            }
         }
 
 
@@ -232,6 +237,12 @@ namespace Mediatek86.vue
             RemplirComboCategorie(lesRayons, bdgRayons, cbxRevuesRayons);
             RemplirComboCategorie(lesRayons, bdgRayonsChoix, comboRevueRayon);
             RemplirRevuesListeComplete();
+            if (service.Equals("prêt"))
+            {
+                btnAccederCommandeRevue.Enabled = false;
+                btnModifierRevue.Enabled = false;
+                btnSupprRevues.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -639,6 +650,12 @@ namespace Mediatek86.vue
             RemplirComboCategorie(lesRayons, bdgRayons, cbxLivresRayons);
             RemplirComboCategorie(lesRayons, bdgRayonsChoix, comboLivreRayon);
             RemplirLivresListeComplete();
+            if (service.Equals("prêt"))
+            {
+                btnCommandeLivre.Enabled = false;
+                btnModifierLivre.Enabled = false;
+                btnSupprLivre.Enabled = false;
+            }
         }
 
         /// <summary>
@@ -1048,6 +1065,12 @@ namespace Mediatek86.vue
             RemplirComboCategorie(lesRayons, bdgRayons, cbxDvdRayons);
             RemplirComboCategorie(lesRayons, bdgRayonsChoix, comboDvdRayon);
             RemplirDvdListeComplete();
+            if (service.Equals("prêt"))
+            {
+                btnAccederCommandeDvd.Enabled = false;
+                btnModifierDvd.Enabled = false;
+                btnSupprDvd.Enabled = false;
+            }
         }
 
         /// <summary>
