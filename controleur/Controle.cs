@@ -8,20 +8,25 @@ namespace Mediatek86.controleur
 {
     public class Controle
     {
-        private readonly List<Livre> lesLivres;
-        private readonly List<Dvd> lesDvd;
-        private readonly List<Revue> lesRevues;
-        private readonly List<Categorie> lesRayons;
-        private readonly List<Categorie> lesPublics;
-        private readonly List<Categorie> lesGenres;
+        private FrmAuthentification frmAuthentification;
 
         /// <summary>
         /// Ouverture de la fenêtre
         /// </summary>
         public Controle()
         {
-            FrmMediatek frmMediatek = new FrmMediatek(this);
+            frmAuthentification = new FrmAuthentification(this);
+            frmAuthentification.ShowDialog();
+        }
+        /// <summary>
+        /// Permet d'ouvrir le formulaire mediatek
+        /// </summary>
+        /// <param name="service">le service de l'utilisateur connecté</param>
+        public void OuvertureFrmMediatek(string service)
+        {
+            FrmMediatek frmMediatek = new FrmMediatek(this, service);
             frmMediatek.ShowDialog();
+            frmAuthentification.Dispose();
         }
 
         /// <summary>
@@ -236,6 +241,16 @@ namespace Mediatek86.controleur
         public List<Revue> GetAbonnementMoinsTrenteJours()
         {
             return Dao.GetAbonnementMoinsTrenteJours();
+        }
+        /// <summary>
+        /// Méthode d'authentifiaction
+        /// </summary>
+        /// <param name="identifiant">l'identifiant</param>
+        /// <param name="pwd">le mot de passe</param>
+        /// <returns>le nom du service</returns>
+        public string Authentification(string identifiant, string pwd)
+        {
+            return Dao.Authetification(identifiant, pwd);
         }
     }
 
