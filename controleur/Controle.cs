@@ -6,10 +6,15 @@ using Mediatek86.vue;
 
 namespace Mediatek86.controleur
 {
+    /// <summary>
+    /// Classe Controle
+    /// </summary>
     public class Controle
     {
-        private FrmAuthentification frmAuthentification;
-
+        /// <summary>
+        /// Instance du formulaire Authentifiation
+        /// </summary>
+        readonly private FrmAuthentification frmAuthentification;
         /// <summary>
         /// Ouverture de la fenêtre
         /// </summary>
@@ -25,8 +30,8 @@ namespace Mediatek86.controleur
         public void OuvertureFrmMediatek(string service)
         {
             FrmMediatek frmMediatek = new FrmMediatek(this, service);
-            frmMediatek.ShowDialog();
             frmAuthentification.Dispose();
+            frmMediatek.ShowDialog();
         }
 
         /// <summary>

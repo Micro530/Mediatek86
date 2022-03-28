@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-//using MySql.Data.MySqlClient;
 using MySqlConnector;
+using Serilog;
 
 namespace Mediatek86.bdd
 {
+    /// <summary>
+    /// Classe BddMySql
+    /// </summary>
     public class BddMySql
     {
         /// <summary>
@@ -29,13 +32,20 @@ namespace Mediatek86.bdd
         /// <param name="stringConnect">chaine de connexion</param>
         private BddMySql(string stringConnect)
         {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.Console()
+                .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)
+                .CreateLogger();
             try
             {
                 connection = new MySqlConnection(stringConnect);
                 connection.Open();
+                Log.Information("Ouverture de la connexion à la BDD" );
             }
             catch (MySqlException e)
             {
+                Log.Warning("Erreur sur l'ouverture de la connexion avec la BDD");
                 ErreurGraveBddNonAccessible(e);
             }
         }
@@ -57,7 +67,8 @@ namespace Mediatek86.bdd
         /// <summary>
         /// Exécute une requête type "select" et valorise le curseur
         /// </summary>
-        /// <param name="stringQuery">requête select</param>
+        /// <param name="stringQuery"> la requete</param>
+        /// <param name="parameters">les parametres</param>
         public void ReqSelect(string stringQuery, Dictionary<string, object> parameters)
         {
             MySqlCommand command;
@@ -77,6 +88,7 @@ namespace Mediatek86.bdd
             }
             catch (MySqlException e)
             {
+                Log.Warning(e, "Erreur dans la BDD");
                 MessageBox.Show(e.Message, "Erreur dans la BDD", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine(e.Message);
             }
@@ -100,8 +112,9 @@ namespace Mediatek86.bdd
             {
                 return reader.Read();
             }
-            catch
+            catch(Exception e)
             {
+                Log.Information(e, "Impossible de lire le curseur");
                 return false;
             }
         }
@@ -121,8 +134,9 @@ namespace Mediatek86.bdd
             {
                 return reader[nameField];
             }
-            catch
+            catch(Exception e)
             {
+                Log.Information(e, "Nom de champs introuvable");
                 return null;
             }
         }
@@ -151,10 +165,10 @@ namespace Mediatek86.bdd
             }
             catch (MySqlException e)
             {
+                Log.Warning(e, "Operation impossible");
                 MessageBox.Show(e.Message, "Operation impossible", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Console.WriteLine(e.Message);
                 throw;
-                return false;
             }
             catch (InvalidOperationException e)
             {
@@ -180,6 +194,7 @@ namespace Mediatek86.bdd
         private void ErreurGraveBddNonAccessible(Exception e)
         {
             MessageBox.Show("Base de données non accessibles", "Erreur grave");
+            Log.Fatal("Base de données non accessibles");
             Console.WriteLine(e.Message);
             Environment.Exit(1);
         }

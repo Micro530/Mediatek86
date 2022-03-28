@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# S2292: Trivial properties should be auto-implemented
+dotnet_diagnostic.S2292.severity = none

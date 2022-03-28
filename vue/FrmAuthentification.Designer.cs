@@ -1,6 +1,9 @@
 ﻿
 namespace Mediatek86.vue
 {
+    /// <summary>
+    /// Formulaire FrmAuthentification
+    /// </summary>
     partial class FrmAuthentification
     {
         /// <summary>
@@ -76,7 +79,7 @@ namespace Mediatek86.vue
             this.btnConnexion.TabIndex = 4;
             this.btnConnexion.Text = "connexion";
             this.btnConnexion.UseVisualStyleBackColor = true;
-            this.btnConnexion.Click += new System.EventHandler(this.btnConnexion_Click);
+            this.btnConnexion.Click += new System.EventHandler(this.BtnConnexion_Click);
             // 
             // FrmAuthentification
             // 

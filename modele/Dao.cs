@@ -4,16 +4,35 @@ using Mediatek86.bdd;
 using System;
 using System.Windows.Forms;
 using System.Linq;
+using Serilog;
 
 namespace Mediatek86.modele
 {
+    /// <summary>
+    /// Classe Dao
+    /// </summary>
     public static class Dao
     {
         #region variables
-        private static readonly string server = "localhost";
-        private static readonly string userid = "root";
-        private static readonly string password = "W4F0I9Us0DJy";
+        /// <summary>
+        /// Adresse du server
+        /// </summary>
+        private static readonly string server = "bddawsfree.ci10i3jrrmqo.eu-west-3.rds.amazonaws.com";
+        /// <summary>
+        /// nom du user
+        /// </summary>
+        private static readonly string userid = "admin";
+        /// <summary>
+        /// mot de passe du user
+        /// </summary>
+        private static readonly string password = "adminaws530";
+        /// <summary>
+        /// nom de la bdd
+        /// </summary>
         private static readonly string database = "mediatek86";
+        /// <summary>
+        /// Chaine de connexion
+        /// </summary>
         private static readonly string connectionString = "server="+server+";user id="+userid+";password="+password+";database="+database+";SslMode=none";
         #endregion
 
@@ -155,7 +174,6 @@ namespace Mediatek86.modele
             req += "from commandedocument d join commande c on d.id=c.id ";
             req += "join suivi s on s.id=d.idSuivi ";
             req += "where d.idLivreDvd = @idLivreDvd";
-            //req += "order by dateCommande DESC";
             Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "@idLivreDvd", idLivre_Dvd}
@@ -202,7 +220,6 @@ namespace Mediatek86.modele
                 string id = (string)curs.Field("id");
                 DateTime date = (DateTime)curs.Field("dateFinAbonnement");
                 string dateFinAbonnement = date.ToString("dd'-'MM'-'yyyy");
-                string idLivreDvd = (string)curs.Field("idRevue");
                 date = (DateTime)curs.Field("dateCommande");
                 string dateCommande = date.ToString("dd'-'MM'-'yyyy");
                 double montant = (double)curs.Field("montant");
@@ -417,7 +434,10 @@ namespace Mediatek86.modele
                 curs.ReqUpdate(req, parameters);
                 curs.Close();
                 return true;
-            }catch{
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -488,7 +508,7 @@ namespace Mediatek86.modele
             string id = CreerCommande(commande);
             try
             {
-                string req = "insert into commandeDocument values (@id, @nbExemplaire, @idLivreDvd, @idSuivi)";
+                string req = "insert into commandedocument values (@id, @nbExemplaire, @idLivreDvd, @idSuivi)";
                 Dictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "@id", id},
@@ -501,8 +521,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -529,15 +550,16 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
         /// <summary>
         /// Modification d'un document
         /// </summary>
-        /// <param name="document">document à modifier</param>
+        /// <param name="commande">document à modifier</param>
         /// <returns>true si la modification à pu se faire</returns>
         public static bool ModifierCommande(CommandeDoc commande)
         {
@@ -555,15 +577,16 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
         /// <summary>
         /// Modification d'un document
         /// </summary>
-        /// <param name="document">document à modifier</param>
+        /// <param name="commande">document à modifier</param>
         /// <returns>true si la modification à pu se faire</returns>
         public static bool ModifierCommandeLivreDvd(CommandeDoc commande)
         {
@@ -583,8 +606,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -612,8 +636,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -644,8 +669,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -676,8 +702,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -708,8 +735,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -737,8 +765,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -761,8 +790,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -797,8 +827,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -822,6 +853,7 @@ namespace Mediatek86.modele
             }
             catch(Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -845,6 +877,7 @@ namespace Mediatek86.modele
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -868,6 +901,7 @@ namespace Mediatek86.modele
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -902,8 +936,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }
@@ -934,8 +969,9 @@ namespace Mediatek86.modele
                 curs.Close();
                 return true;
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine(e.Message);
                 return false;
             }
         }

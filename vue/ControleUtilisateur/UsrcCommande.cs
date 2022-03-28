@@ -11,15 +11,15 @@ using System.Windows.Forms;
 
 namespace Mediatek86.vue.ControleUtilisateur
 {
-    public partial class UsrcCommandeLivre : UserControl
+    public partial class UsrcCommande : UserControl
     {
-        private FrmCommandes frmCommandes;
-        private BindingSource bdgCommandesListe = new BindingSource();
-        private BindingSource bdgSuiviListe = new BindingSource();
-        private Livre unLivre;
-        private Dvd unDvd;
-        private Revue uneRevue;
-        private string idDocument;
+        readonly private FrmCommandes frmCommandes;
+        readonly private BindingSource bdgCommandesListe = new BindingSource();
+        readonly private BindingSource bdgSuiviListe = new BindingSource();
+        readonly private Livre unLivre;
+        readonly private Dvd unDvd;
+        readonly private Revue uneRevue;
+        readonly private string idDocument;
         private List<Suivi> lesSuivis;
         private bool ajoutEnCours;
         private CommandeDoc CommandeSelectionneLivreDvd;
@@ -29,16 +29,16 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// </summary>
         /// <param name="frm">formaulaire commande appelant</param>
         /// <param name="objet">objet soit (Livre, DVD, Revue)</param>
-        public UsrcCommandeLivre(FrmCommandes frm, object objet)
+        public UsrcCommande(FrmCommandes frm, object objet)
         {
-            if(objet is Livre)
+            if(objet is Livre livre)
             {
-                unLivre = (Livre)objet;
+                unLivre = livre;
                 idDocument = unLivre.Id;
             }
-            else if (objet is Dvd)
+            else if (objet is Dvd dvd)
             {
-                unDvd = (Dvd)objet;
+                unDvd = dvd;
                 idDocument = unDvd.Id;
             }
             else
@@ -57,20 +57,20 @@ namespace Mediatek86.vue.ControleUtilisateur
         {
             if(unLivre != null)
             {
-                remplirDgvListCommande(frmCommandes.GetAllCommandes(unLivre.Id));
+                RemplirDgvListCommande(frmCommandes.GetAllCommandes(unLivre.Id));
                 txtInfoObjet.Text = $"Livre : {unLivre.Titre} - {unLivre.Auteur} - {unLivre.Collection} - {unLivre.Genre}";
-                preparerComboSuivi();
+                PreparerComboSuivi();
             }
             else if(unDvd != null)
             {
-                remplirDgvListCommande(frmCommandes.GetAllCommandes(unDvd.Id));
+                RemplirDgvListCommande(frmCommandes.GetAllCommandes(unDvd.Id));
                 txtInfoObjet.Text = $"DVD : {unDvd.Titre} - {unDvd.Realisateur} - {unDvd.Duree} - {unDvd.Genre}";
                 btnAjoutCommandeLivre.Text = "Ajouter une nouvelle commande pour ce DVD";
-                preparerComboSuivi();
+                PreparerComboSuivi();
             }
             else
             {
-                remplirDgvListCommandeAbo(frmCommandes.GetAllCommandesRevues(uneRevue.Id));
+                RemplirDgvListCommandeAbo(frmCommandes.GetAllCommandesRevues(uneRevue.Id));
                 txtInfoObjet.Text = $"Revue : {uneRevue.Titre} - {uneRevue.Empruntable} - {uneRevue.Periodicite} - {uneRevue.DelaiMiseADispo}";
                 comboSuivi.Visible = false;
                 lblCombo.Visible = false;
@@ -86,7 +86,7 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// <summary>
         /// Permet de remplir le combo suivi
         /// </summary>
-        public void preparerComboSuivi()
+        public void PreparerComboSuivi()
         {
             lesSuivis = frmCommandes.GetAllSuivi();
             bdgSuiviListe.DataSource = lesSuivis;
@@ -97,7 +97,7 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// Remplir le dataGridView des commandes
         /// </summary>
         /// <param name="commandes"> les commandes a insérer</param>
-        public void remplirDgvListCommande(List<CommandeDoc> commandes)
+        public void RemplirDgvListCommande(List<CommandeDoc> commandes)
         {
             bdgCommandesListe.DataSource = commandes;
             dgvListCommande.DataSource = bdgCommandesListe;
@@ -111,7 +111,7 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// Remplir le dataGridView des commandes d'abonnement
         /// </summary>
         /// <param name="commandesAbo"> les commandes a insérer</param>
-        public void remplirDgvListCommandeAbo(List<CommandeAbo> commandesAbo)
+        public void RemplirDgvListCommandeAbo(List<CommandeAbo> commandesAbo)
         {
             bdgCommandesListe.DataSource = commandesAbo;
             dgvListCommande.DataSource = bdgCommandesListe;
@@ -125,7 +125,7 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvListCommande_SelectionChanged(object sender, EventArgs e)
+        private void DgvListCommande_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvListCommande.CurrentCell != null)
             {
@@ -166,7 +166,7 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// <param name="commande">la commande selectionné</param>
         public void AfficheCommandeInfos(CommandeDoc commande)
         {
-            Suivi suiviCommande = lesSuivis.Cast<Suivi>().Where((Suivi s) => s.Libelle == commande.Suivi).First();
+            Suivi suiviCommande = lesSuivis.First((Suivi s) => s.Libelle == commande.Suivi);
             comboSuivi.SelectedItem = suiviCommande;
             calendrierCommandeLivre.SetDate(DateTime.Parse(commande.DateCommande));
             txtMontant.Text = commande.Montant.ToString();
@@ -197,7 +197,7 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAjoutCommandeLivre_Click(object sender, EventArgs e)
+        private void BtnAjoutCommandeLivre_Click(object sender, EventArgs e)
         {
             grbListCommande.Enabled = false;
             grbInfoCommande.Enabled = true;
@@ -214,7 +214,7 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAnnulerModif_Click(object sender, EventArgs e)
+        private void BtnAnnulerModif_Click(object sender, EventArgs e)
         {
             grbListCommande.Enabled = true;
             grbInfoCommande.Enabled = false;
@@ -225,11 +225,11 @@ namespace Mediatek86.vue.ControleUtilisateur
             VideCommandeInfos();
             if (uneRevue is null)
             {
-                remplirDgvListCommande(frmCommandes.GetAllCommandes(idDocument));
+                RemplirDgvListCommande(frmCommandes.GetAllCommandes(idDocument));
             }
             else
             {
-                remplirDgvListCommandeAbo(frmCommandes.GetAllCommandesRevues(idDocument));
+                RemplirDgvListCommandeAbo(frmCommandes.GetAllCommandesRevues(idDocument));
 
             }
         }
@@ -238,7 +238,7 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnValiderModif_Click(object sender, EventArgs e)
+        private void BtnValiderModif_Click(object sender, EventArgs e)
         {
             if(uneRevue is null)
             {
@@ -248,7 +248,7 @@ namespace Mediatek86.vue.ControleUtilisateur
                     CommandeDoc commande = new CommandeDoc(ConversionDateBdd(calendrierCommandeLivre.SelectionStart), double.Parse(txtMontant.Text),
                             "1", int.Parse(txtNbExemplaire.Text), idDocument, suivi.Id, suivi.Libelle);
                     frmCommandes.ModifierAjouterCommande(commande, ajoutEnCours);
-                    btnAnnulerModif_Click(null, null);
+                    BtnAnnulerModif_Click(null, null);
                 }
                 else
                 {
@@ -257,7 +257,7 @@ namespace Mediatek86.vue.ControleUtilisateur
                         CommandeDoc commande = new CommandeDoc(ConversionDateBdd(calendrierCommandeLivre.SelectionStart), double.Parse(txtMontant.Text),
                             CommandeSelectionneLivreDvd.Id, int.Parse(txtNbExemplaire.Text), idDocument, suivi.Id, suivi.Libelle);
                         frmCommandes.ModifierAjouterCommande(commande, ajoutEnCours);
-                        btnAnnulerModif_Click(null, null);
+                        BtnAnnulerModif_Click(null, null);
                     }
                     else
                     {
@@ -271,7 +271,7 @@ namespace Mediatek86.vue.ControleUtilisateur
                 {
                     CommandeAbo commande = new CommandeAbo(ConversionDateBdd(DateTime.Now), double.Parse(txtMontant.Text), "0", ConversionDateBdd(calendrierCommandeLivre.SelectionStart), idDocument);
                     frmCommandes.ModifierAjouterCommande(commande, ajoutEnCours);
-                    btnAnnulerModif_Click(null, null);
+                    BtnAnnulerModif_Click(null, null);
                 }
                 else
                 {
@@ -281,7 +281,7 @@ namespace Mediatek86.vue.ControleUtilisateur
                         CommandeAbo commande = new CommandeAbo(ConversionDateBdd(DateTime.Now), double.Parse(txtMontant.Text), CommandeSelectionneAbo.Id, 
                             ConversionDateBdd(calendrierCommandeLivre.SelectionStart), idDocument);
                         frmCommandes.ModifierAjouterCommande(commande, ajoutEnCours);
-                        btnAnnulerModif_Click(null, null);
+                        BtnAnnulerModif_Click(null, null);
 
                     }
                     else
@@ -306,7 +306,7 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnModifierCommandeLivre_Click(object sender, EventArgs e)
+        private void BtnModifierCommandeLivre_Click(object sender, EventArgs e)
         {
             grbListCommande.Enabled = false;
             grbInfoCommande.Enabled = true;
@@ -320,16 +320,16 @@ namespace Mediatek86.vue.ControleUtilisateur
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRetourDoc_Click(object sender, EventArgs e)
+        private void BtnRetourDoc_Click(object sender, EventArgs e)
         {
-            frmCommandes.fermerVueCommande();
+            frmCommandes.FermerVueCommande();
         }
         /// <summary>
         /// evenement lors du clique sur le btnSupprimerCommande
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSupprimerCommandeLivre_Click(object sender, EventArgs e)
+        private void BtnSupprimerCommandeLivre_Click(object sender, EventArgs e)
         {
             if(dgvListCommande.CurrentCell != null)
             {
@@ -339,12 +339,12 @@ namespace Mediatek86.vue.ControleUtilisateur
                     if(uneRevue is null)
                     {
                         frmCommandes.SupprCommandeLivreDvd(CommandeSelectionneLivreDvd);
-                        remplirDgvListCommande(frmCommandes.GetAllCommandes(idDocument));
+                        RemplirDgvListCommande(frmCommandes.GetAllCommandes(idDocument));
                     }
                     else if(!VerifRevueCommande(frmCommandes.GetExemplairesRevue(CommandeSelectionneAbo.Id)))
                     {
                         frmCommandes.SupprAbonnement(CommandeSelectionneAbo.Id);
-                        remplirDgvListCommandeAbo(frmCommandes.GetAllCommandesRevues(idDocument));
+                        RemplirDgvListCommandeAbo(frmCommandes.GetAllCommandesRevues(idDocument));
                     }
                 }
             }
