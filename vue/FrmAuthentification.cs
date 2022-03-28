@@ -13,15 +13,29 @@ namespace Mediatek86.vue
 {
     public partial class FrmAuthentification : Form
     {
-        Controle controle;
+        /// <summary>
+        /// Instance du controle
+        /// </summary>
+        readonly private Controle controle;
+        /// <summary>
+        /// Nom du service
+        /// </summary>
         string nomService;
+        /// <summary>
+        /// Constructeur du formulaire
+        /// </summary>
+        /// <param name="controle"></param>
         public FrmAuthentification(Controle controle)
         {
             this.controle = controle;
             InitializeComponent();
         }
-
-        private void btnConnexion_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Évenement du clique sur le BtnConnexion
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BtnConnexion_Click(object sender, EventArgs e)
         {
             nomService = controle.Authentification(txtIdentifiant.Text, txtPwd.Text);
             if(nomService is null)

@@ -1,6 +1,9 @@
 ﻿
 namespace Mediatek86.vue
 {
+    /// <summary>
+    /// Formulaire FrmCommande
+    /// </summary>
     partial class FrmCommandes
     {
         /// <summary>

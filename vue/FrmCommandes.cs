@@ -18,27 +18,15 @@ namespace Mediatek86.vue
         /// <summary>
         /// Instance du UserControl usrcCommandeLivre
         /// </summary>
-        private UsrcCommandeLivre usrcCommandeLivre;
-        /// <summary>
-        /// L'eventuel livre récupérer
-        /// </summary>
-        private Livre unLivre;
-        /// <summary>
-        /// l'eventurel dvd récupéré
-        /// </summary>
-        private Dvd unDvd;
-        /// <summary>
-        /// L'éventuel Revue récupéré
-        /// </summary>
-        private Revue uneRevue;
+        private UsrcCommande usrcCommandeLivre;
         /// <summary>
         /// L'objet récupéré
         /// </summary>
-        private Object unObjet;
+        readonly private Object unObjet;
         /// <summary>
         /// L'instance du controleur
         /// </summary>
-        private Controle controle;
+        readonly private Controle controle;
         /// <summary>
         /// Constructeur
         /// </summary>
@@ -65,8 +53,10 @@ namespace Mediatek86.vue
         /// </summary>
         private void ConsUsrcCommandeLivre()
         {
-            usrcCommandeLivre = new UsrcCommandeLivre(this, unObjet);
-            usrcCommandeLivre.Location = new Point(0, 0);
+            usrcCommandeLivre = new UsrcCommande(this, unObjet)
+            {
+                Location = new Point(0, 0)
+            };
             this.Controls.Add(usrcCommandeLivre);
         }
         /// <summary>
@@ -95,16 +85,16 @@ namespace Mediatek86.vue
         {
             if (!ajoutEnCours)
             {
-                if(commande is CommandeDoc)
+                if(commande is CommandeDoc doc)
                 {
-                    controle.ModifierCommandeLivreDvd((CommandeDoc)commande);
+                    controle.ModifierCommandeLivreDvd(doc);
                 }
             }
             else
             {
-                if (commande is CommandeDoc)
+                if (commande is CommandeDoc doc)
                 {
-                    controle.CreerCommandeLivreDvd((CommandeDoc)commande);
+                    controle.CreerCommandeLivreDvd(doc);
                 }
                 else
                 {
@@ -115,7 +105,7 @@ namespace Mediatek86.vue
         /// <summary>
         /// Permet de fermé cette fenetre
         /// </summary>
-        public void fermerVueCommande()
+        public void FermerVueCommande()
         {
             this.Dispose();
         }

@@ -9,39 +9,108 @@ using System.Threading;
 
 namespace Mediatek86.vue
 {
+    /// <summary>
+    /// Formulaire FrmMediatek
+    /// </summary>
     public partial class FrmMediatek : Form
     {
 
         #region Variables globales
-
+        /// <summary>
+        /// Instance du controle
+        /// </summary>
         private readonly Controle controle;
+        /// <summary>
+        /// Code etat neuf
+        /// </summary>
         const string ETATNEUF = "00001";
+        /// <summary>
+        /// Pathde la racine des photos
+        /// </summary>
+        private const string pathC = "c:\\";
+        /// <summary>
+        /// BindingSource de la liste des livres
+        /// </summary>
         private readonly BindingSource bdgLivresListe = new BindingSource();
+        /// <summary>
+        /// BindingSource de la liste des livreDvd
+        /// </summary>
         private readonly BindingSource bdgDvdListe = new BindingSource();
+        /// <summary>
+        /// BindingSource de la liste des Genre
+        /// </summary>
         private readonly BindingSource bdgGenres = new BindingSource();
+        /// <summary>
+        /// BindingSource de la liste des GenreChoix
+        /// </summary>
         private readonly BindingSource bdgGenresChoix = new BindingSource();
+        /// <summary>
+        /// BindingSource de la liste des publics
+        /// </summary>
         private readonly BindingSource bdgPublics = new BindingSource();
+        /// <summary>
+        /// BindingSource de la liste des public choix
+        /// </summary>
         private readonly BindingSource bdgPublicsChoix = new BindingSource();
+        /// <summary>
+        /// BindingSource de la liste des rayons
+        /// </summary>
         private readonly BindingSource bdgRayons = new BindingSource();
+        /// <summary>
+        /// BindingSource de la liste des rayons choix
+        /// </summary>
         private readonly BindingSource bdgRayonsChoix = new BindingSource();
+        /// <summary>
+        /// BindingSource de la liste des revues
+        /// </summary>
         private readonly BindingSource bdgRevuesListe = new BindingSource();
+        /// <summary>
+        /// BindingSource de la liste des exemplaires
+        /// </summary>
         private readonly BindingSource bdgExemplairesListe = new BindingSource();
+        /// <summary>
+        /// liste des livres
+        /// </summary>
         private List<Livre> lesLivres = new List<Livre>();
+        /// <summary>
+        /// liste des dvd
+        /// </summary>
         private List<Dvd> lesDvd = new List<Dvd>();
+        /// <summary>
+        /// liste des revues
+        /// </summary>
         private List<Revue> lesRevues = new List<Revue>();
+        /// <summary>
+        /// listes des exemplaires
+        /// </summary>
         private List<Exemplaire> lesExemplaires = new List<Exemplaire>();
-        private List<Categorie> lesGenres = new List<Categorie>();
-        private List<Categorie> lesPublics = new List<Categorie>();
-        private List<Categorie> lesRayons = new List<Categorie>();
+        /// <summary>
+        /// liste des genres
+        /// </summary>
+        readonly private List<Categorie> lesGenres;
+        /// <summary>
+        /// liste des publics
+        /// </summary>
+        readonly private List<Categorie> lesPublics;
+        /// <summary>
+        /// liste des rayons
+        /// </summary>
+        readonly private List<Categorie> lesRayons;
+        /// <summary>
+        /// permet de connaitre si une modification est en cours
+        /// </summary>
         private bool ajoutEnCours;
-        private string service;
+        /// <summary>
+        /// le nom du service
+        /// </summary>
+        readonly private string service;
 
         #endregion
-
         /// <summary>
         /// Constructeur
         /// </summary>
-        /// <param name="controle"></param>
+        /// <param name="controle">le controle appelant</param>
+        /// <param name="service">le nom du service</param>
         internal FrmMediatek(Controle controle, string service)
         {
             InitializeComponent();
@@ -52,7 +121,7 @@ namespace Mediatek86.vue
             lesRayons = controle.GetAllRayons();
             if (!service.Equals("prêt"))
             {
-                messageRevuesMoinsTrenteJours(controle.GetAbonnementMoinsTrenteJours());
+                MessageRevuesMoinsTrenteJours(controle.GetAbonnementMoinsTrenteJours());
             }
         }
 
@@ -62,9 +131,9 @@ namespace Mediatek86.vue
         /// Permet de créer le message si des abonnement sont à moins de 30 jours lors de l'ouverture de l'application
         /// </summary>
         /// <param name="lesRevues">la liste des revue qui ont moins de 30 jours</param>
-        private void messageRevuesMoinsTrenteJours(List<Revue> lesRevues)
+        private void MessageRevuesMoinsTrenteJours(List<Revue> lesRevues)
         {
-            if(lesRevues.Count() > 0)
+            if(lesRevues.Any())
             {
                 string message = "Les abonnements  de ces revues de terminent dans moins de 30 jours :\n";
                 foreach (Revue revue in lesRevues)
@@ -155,7 +224,7 @@ namespace Mediatek86.vue
                 {
                     case "btnValiderModificationLivre":
                         int idLivreTemp = this.lesLivres.Max((Livre l) => int.Parse(l.Id)) + 1;
-                        Livre unLivre = new Livre(conversionIDBdd(idLivreTemp), txbLivresTitre.Text, txbLivresImage.Text, txbLivresIsbn.Text, txbLivresAuteur.Text, txbLivresCollection.Text,
+                        Livre unLivre = new Livre(ConversionIDBdd(idLivreTemp), txbLivresTitre.Text, txbLivresImage.Text, txbLivresIsbn.Text, txbLivresAuteur.Text, txbLivresCollection.Text,
                             ((Genre)comboLivreGenre.SelectedValue).Id, ((Genre)comboLivreGenre.SelectedValue).Libelle, ((Public)comboLivrePublic.SelectedValue).Id,
                             ((Public)comboLivrePublic.SelectedValue).Libelle, ((Rayon)comboLivreRayon.SelectedValue).Id, ((Rayon)comboLivreRayon.SelectedValue).Libelle);
                         controle.AjouterLivre(unLivre);
@@ -193,7 +262,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        private string conversionIDBdd(int id)
+        private string ConversionIDBdd(int id)
         {
             if (id <= 9)
             {
@@ -227,7 +296,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tabRevues_Enter(object sender, EventArgs e)
+        private void TabRevues_Enter(object sender, EventArgs e)
         {
             lesRevues = controle.GetAllRevues();
             RemplirComboCategorie(lesGenres, bdgGenres, cbxRevuesGenres);
@@ -268,7 +337,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRevuesNumRecherche_Click(object sender, EventArgs e)
+        private void BtnRevuesNumRecherche_Click(object sender, EventArgs e)
         {
             if (!txbRevuesNumRecherche.Text.Equals(""))
             {
@@ -279,8 +348,10 @@ namespace Mediatek86.vue
                 Revue revue = lesRevues.Find(x => x.Id.Equals(txbRevuesNumRecherche.Text));
                 if (revue != null)
                 {
-                    List<Revue> revues = new List<Revue>();
-                    revues.Add(revue);
+                    List<Revue> revues = new List<Revue>
+                    {
+                        revue
+                    };
                     RemplirRevuesListe(revues);
                 }
                 else
@@ -302,7 +373,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txbRevuesTitreRecherche_TextChanged(object sender, EventArgs e)
+        private void TxbRevuesTitreRecherche_TextChanged(object sender, EventArgs e)
         {
             if (!txbRevuesTitreRecherche.Text.Equals(""))
             {
@@ -337,13 +408,13 @@ namespace Mediatek86.vue
             txbRevuesDateMiseADispo.Text = revue.DelaiMiseADispo.ToString();
             txbRevuesNumero.Text = revue.Id;
             //récupère les genre, les publics et lesrayons du livre et l'affiche dans le combobox
-            Genre genreLivre = lesGenres.Cast<Genre>().Where((Genre g) => g.Libelle == revue.Genre).First();
+            Genre genreLivre = lesGenres.Cast<Genre>().First(g => g.Libelle == revue.Genre);
             comboRevueGenre.SelectedItem = genreLivre;
             
-            Public publicLivre = lesPublics.Cast<Public>().Where((Public p) => p.Libelle == revue.Public).First();
+            Public publicLivre = lesPublics.Cast<Public>().First((Public p) => p.Libelle == revue.Public);
             comboRevuePublic.SelectedItem = publicLivre;
 
-            Rayon rayonLivre = lesRayons.Cast<Rayon>().Where((Rayon r) => r.Libelle == revue.Rayon).First();
+            Rayon rayonLivre = lesRayons.Cast<Rayon>().First((Rayon r) => r.Libelle == revue.Rayon);
             comboRevueRayon.SelectedItem = rayonLivre;
 
             txbRevuesTitre.Text = revue.Titre;     
@@ -380,7 +451,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cbxRevuesGenres_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbxRevuesGenres_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxRevuesGenres.SelectedIndex >= 0)
             {
@@ -399,7 +470,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cbxRevuesPublics_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbxRevuesPublics_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxRevuesPublics.SelectedIndex >= 0)
             {
@@ -418,7 +489,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cbxRevuesRayons_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbxRevuesRayons_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxRevuesRayons.SelectedIndex >= 0)
             {
@@ -438,7 +509,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvRevuesListe_SelectionChanged(object sender, EventArgs e)
+        private void DgvRevuesListe_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvRevuesListe.CurrentCell != null)
             {
@@ -463,7 +534,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRevuesAnnulPublics_Click(object sender, EventArgs e)
+        private void BtnRevuesAnnulPublics_Click(object sender, EventArgs e)
         {
             RemplirRevuesListeComplete();
         }
@@ -473,7 +544,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRevuesAnnulRayons_Click(object sender, EventArgs e)
+        private void BtnRevuesAnnulRayons_Click(object sender, EventArgs e)
         {
             RemplirRevuesListeComplete();
         }
@@ -483,7 +554,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnRevuesAnnulGenres_Click(object sender, EventArgs e)
+        private void BtnRevuesAnnulGenres_Click(object sender, EventArgs e)
         {
             RemplirRevuesListeComplete();
         }
@@ -519,7 +590,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvRevuesListe_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DgvRevuesListe_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             VideRevuesZones();
             string titreColonne = dgvRevuesListe.Columns[e.ColumnIndex].HeaderText;
@@ -555,7 +626,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSupprRevues_Click(object sender, EventArgs e)
+        private void BtnSupprRevues_Click(object sender, EventArgs e)
         {
             if (dgvRevuesListe.CurrentCell.RowIndex != -1)
             {
@@ -572,7 +643,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnModifierRevue_Click(object sender, EventArgs e)
+        private void BtnModifierRevue_Click(object sender, EventArgs e)
         {
             grpRevuesInfos.Enabled = true;
             grpRevuesRecherche.Enabled = false;
@@ -582,7 +653,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnValideModifRevue_Click(object sender, EventArgs e)
+        private void BtnValideModifRevue_Click(object sender, EventArgs e)
         {
             ModificationAjoutDocument(sender);
         }
@@ -591,7 +662,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAnnulerRevue_Click(object sender, EventArgs e)
+        private void BtnAnnulerRevue_Click(object sender, EventArgs e)
         {
             grpRevuesInfos.Enabled = false;
             grpRevuesRecherche.Enabled = true;
@@ -601,7 +672,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAjouterRevue_Click(object sender, EventArgs e)
+        private void BtnAjouterRevue_Click(object sender, EventArgs e)
         {
             grpRevuesInfos.Enabled = true;
             grpRevuesRecherche.Enabled = false;
@@ -613,7 +684,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAccederCommandeRevue_Click(object sender, EventArgs e)
+        private void BtnAccederCommandeRevue_Click(object sender, EventArgs e)
         {
             if (dgvRevuesListe.CurrentCell.RowIndex != -1)
             {
@@ -692,8 +763,10 @@ namespace Mediatek86.vue
                 Livre livre = lesLivres.Find(x => x.Id.Equals(txbLivresNumRecherche.Text));
                 if (livre != null)
                 {
-                    List<Livre> livres = new List<Livre>();
-                    livres.Add(livre);
+                    List<Livre> livres = new List<Livre>
+                    {
+                        livre
+                    };
                     RemplirLivresListe(livres);
                 }
                 else
@@ -751,13 +824,13 @@ namespace Mediatek86.vue
             txbLivresNumero.Text = livre.Id;
             
             //récupère les genre, les publics et lesrayons du livre et l'affiche dans le combobox
-            Genre genreLivre = lesGenres.Cast<Genre>().Where((Genre g) => g.Libelle == livre.Genre).First();
+            Genre genreLivre = lesGenres.Cast<Genre>().First((Genre g) => g.Libelle == livre.Genre);
             comboLivreGenre.SelectedItem = genreLivre;
 
-            Public publicLivre = lesPublics.Cast<Public>().Where((Public p) => p.Libelle == livre.Public).First();
+            Public publicLivre = lesPublics.Cast<Public>().First((Public p) => p.Libelle == livre.Public);
             comboLivrePublic.SelectedItem = publicLivre;
 
-            Rayon rayonLivre = lesRayons.Cast<Rayon>().Where((Rayon r) => r.Libelle == livre.Rayon).First();
+            Rayon rayonLivre = lesRayons.Cast<Rayon>().First((Rayon r) => r.Libelle == livre.Rayon);
             comboLivreRayon.SelectedItem = rayonLivre;
             
             txbLivresTitre.Text = livre.Titre;      
@@ -969,7 +1042,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSupprLivre_Click(object sender, EventArgs e)
+        private void BtnSupprLivre_Click(object sender, EventArgs e)
         {
             if (dgvLivresListe.CurrentCell.RowIndex != -1)
             {
@@ -986,7 +1059,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnValiderLivre_Click(object sender, EventArgs e)
+        private void BtnValiderLivre_Click(object sender, EventArgs e)
         {
             ModificationAjoutDocument(sender);
         }
@@ -995,11 +1068,11 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAnnulerLivre_Click(object sender, EventArgs e)
+        private void BtnAnnulerLivre_Click(object sender, EventArgs e)
         {
             grpLivresInfos.Enabled = false;
             grpLivresRecherche.Enabled = true;
-            dgvDvdListe_SelectionChanged(null, null);
+            DgvDvdListe_SelectionChanged(null, null);
             ajoutEnCours = false;
         }
         /// <summary>
@@ -1007,7 +1080,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnModifierLivre_Click(object sender, EventArgs e)
+        private void BtnModifierLivre_Click(object sender, EventArgs e)
         {
             grpLivresInfos.Enabled = true;
             grpLivresRecherche.Enabled = false;
@@ -1017,7 +1090,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAjouterLivre_Click(object sender, EventArgs e)
+        private void BtnAjouterLivre_Click(object sender, EventArgs e)
         {
             grpLivresInfos.Enabled = true;
             grpLivresRecherche.Enabled = false;
@@ -1029,7 +1102,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnCommandeLivre_Click(object sender, EventArgs e)
+        private void BtnCommandeLivre_Click(object sender, EventArgs e)
         {
             if (dgvLivresListe.CurrentCell.RowIndex != -1)
             {
@@ -1055,7 +1128,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tabDvd_Enter(object sender, EventArgs e)
+        private void TabDvd_Enter(object sender, EventArgs e)
         {
             lesDvd = controle.GetAllDvd();
             RemplirComboCategorie(lesGenres, bdgGenres, cbxDvdGenres);
@@ -1096,7 +1169,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnDvdNumRecherche_Click(object sender, EventArgs e)
+        private void BtnDvdNumRecherche_Click(object sender, EventArgs e)
         {
             if (!txbDvdNumRecherche.Text.Equals(""))
             {
@@ -1107,8 +1180,10 @@ namespace Mediatek86.vue
                 Dvd dvd = lesDvd.Find(x => x.Id.Equals(txbDvdNumRecherche.Text));
                 if (dvd != null)
                 {
-                    List<Dvd> Dvd = new List<Dvd>();
-                    Dvd.Add(dvd);
+                    List<Dvd> Dvd = new List<Dvd>
+                    {
+                        dvd
+                    };
                     RemplirDvdListe(Dvd);
                 }
                 else
@@ -1130,7 +1205,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txbDvdTitreRecherche_TextChanged(object sender, EventArgs e)
+        private void TxbDvdTitreRecherche_TextChanged(object sender, EventArgs e)
         {
             if (!txbDvdTitreRecherche.Text.Equals(""))
             {
@@ -1165,13 +1240,13 @@ namespace Mediatek86.vue
             txbDvdImage.Text = dvd.Image;
             txbDvdDuree.Text = dvd.Duree.ToString() ;
             //récupère les genre, les publics et lesrayons du livre et l'affiche dans le combobox
-            Genre genreLivre = lesGenres.Cast<Genre>().Where((Genre g) => g.Libelle == dvd.Genre).First();
+            Genre genreLivre = lesGenres.Cast<Genre>().First((Genre g) => g.Libelle == dvd.Genre);
             comboDvdGenre.SelectedItem = genreLivre;
 
-            Public publicLivre = lesPublics.Cast<Public>().Where((Public p) => p.Libelle == dvd.Public).First();
+            Public publicLivre = lesPublics.Cast<Public>().First((Public p) => p.Libelle == dvd.Public);
             comboDvdPublic.SelectedItem = publicLivre;
 
-            Rayon rayonLivre = lesRayons.Cast<Rayon>().Where((Rayon r) => r.Libelle == dvd.Rayon).First();
+            Rayon rayonLivre = lesRayons.Cast<Rayon>().First((Rayon r) => r.Libelle == dvd.Rayon);
             comboDvdRayon.SelectedItem = rayonLivre;
             
             txbDvdTitre.Text = dvd.Titre;
@@ -1208,7 +1283,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cbxDvdGenres_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbxDvdGenres_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxDvdGenres.SelectedIndex >= 0)
             {
@@ -1227,7 +1302,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cbxDvdPublics_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbxDvdPublics_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxDvdPublics.SelectedIndex >= 0)
             {
@@ -1246,7 +1321,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void cbxDvdRayons_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbxDvdRayons_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cbxDvdRayons.SelectedIndex >= 0)
             {
@@ -1266,7 +1341,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvDvdListe_SelectionChanged(object sender, EventArgs e)
+        private void DgvDvdListe_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvDvdListe.CurrentCell != null)
             {
@@ -1291,7 +1366,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnDvdAnnulPublics_Click(object sender, EventArgs e)
+        private void BtnDvdAnnulPublics_Click(object sender, EventArgs e)
         {
             RemplirDvdListeComplete();
         }
@@ -1301,7 +1376,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnDvdAnnulRayons_Click(object sender, EventArgs e)
+        private void BtnDvdAnnulRayons_Click(object sender, EventArgs e)
         {
             RemplirDvdListeComplete();
         }
@@ -1311,7 +1386,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnDvdAnnulGenres_Click(object sender, EventArgs e)
+        private void BtnDvdAnnulGenres_Click(object sender, EventArgs e)
         {
             RemplirDvdListeComplete();
         }
@@ -1347,7 +1422,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvDvdListe_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DgvDvdListe_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             VideDvdZones();
             string titreColonne = dgvDvdListe.Columns[e.ColumnIndex].HeaderText;
@@ -1383,7 +1458,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnSupprDvd_Click(object sender, EventArgs e)
+        private void BtnSupprDvd_Click(object sender, EventArgs e)
         {
             if (dgvDvdListe.CurrentCell.RowIndex != -1)
             {
@@ -1400,7 +1475,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnModifierDvd_Click(object sender, EventArgs e)
+        private void BtnModifierDvd_Click(object sender, EventArgs e)
         {
             grpDvdInfos.Enabled = true;
             grpDvdRecherche.Enabled = false;
@@ -1410,7 +1485,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnValiderModifDvd_Click(object sender, EventArgs e)
+        private void BtnValiderModifDvd_Click(object sender, EventArgs e)
         {
             ModificationAjoutDocument(sender);
         }
@@ -1419,18 +1494,18 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAnnulerDvd_Click(object sender, EventArgs e)
+        private void BtnAnnulerDvd_Click(object sender, EventArgs e)
         {
             grpDvdInfos.Enabled = false;
             grpDvdRecherche.Enabled = true;
-            dgvDvdListe_SelectionChanged(null, null);
+            DgvDvdListe_SelectionChanged(null, null);
         }
         /// <summary>
         /// evenement lors de l'ajout d'un dvd
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnAjouterDvd_Click(object sender, EventArgs e)
+        private void BtnAjouterDvd_Click(object sender, EventArgs e)
         {
             grpDvdInfos.Enabled = true;
             grpDvdRecherche.Enabled = false;
@@ -1443,7 +1518,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnActiverCommandeDvd_click(object sender, EventArgs e)
+        private void BtnActiverCommandeDvd_click(object sender, EventArgs e)
         {
             if (dgvDvdListe.CurrentCell.RowIndex != -1)
             {
@@ -1468,10 +1543,10 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void tabReceptionRevue_Enter(object sender, EventArgs e)
+        private void TabReceptionRevue_Enter(object sender, EventArgs e)
         {
             lesRevues = controle.GetAllRevues();
-            accesReceptionExemplaireGroupBox(false);
+            AccesReceptionExemplaireGroupBox(false);
         }
 
         /// <summary>
@@ -1493,7 +1568,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnReceptionRechercher_Click(object sender, EventArgs e)
+        private void BtnReceptionRechercher_Click(object sender, EventArgs e)
         {
             if (!txbReceptionRevueNumero.Text.Equals(""))
             {
@@ -1520,9 +1595,9 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void txbReceptionRevueNumero_TextChanged(object sender, EventArgs e)
+        private void TxbReceptionRevueNumero_TextChanged(object sender, EventArgs e)
         {
-            accesReceptionExemplaireGroupBox(false);
+            AccesReceptionExemplaireGroupBox(false);
             VideReceptionRevueInfos();
         }
 
@@ -1552,12 +1627,12 @@ namespace Mediatek86.vue
                 pcbReceptionRevueImage.Image = null;
             }
             // affiche la liste des exemplaires de la revue
-            afficheReceptionExemplairesRevue();
+            AfficheReceptionExemplairesRevue();
             // accès à la zone d'ajout d'un exemplaire
-            accesReceptionExemplaireGroupBox(true);
+            AccesReceptionExemplaireGroupBox(true);
         }
 
-        private void afficheReceptionExemplairesRevue()
+        private void AfficheReceptionExemplairesRevue()
         {
             string idDocuement = txbReceptionRevueNumero.Text;
             lesExemplaires = controle.GetExemplairesRevue(idDocuement);
@@ -1580,7 +1655,7 @@ namespace Mediatek86.vue
             pcbReceptionRevueImage.Image = null;
             lesExemplaires = new List<Exemplaire>();
             RemplirReceptionExemplairesListe(lesExemplaires);
-            accesReceptionExemplaireGroupBox(false);
+            AccesReceptionExemplaireGroupBox(false);
         }
 
         /// <summary>
@@ -1599,7 +1674,7 @@ namespace Mediatek86.vue
         /// et vide les objets graphiques
         /// </summary>
         /// <param name="acces"></param>
-        private void accesReceptionExemplaireGroupBox(bool acces)
+        private void AccesReceptionExemplaireGroupBox(bool acces)
         {
             VideReceptionExemplaireInfos();
             grpReceptionExemplaire.Enabled = acces;
@@ -1610,12 +1685,14 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnReceptionExemplaireImage_Click(object sender, EventArgs e)
+        private void BtnReceptionExemplaireImage_Click(object sender, EventArgs e)
         {
             string filePath = "";
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = "c:\\";
-            openFileDialog.Filter = "Files|*.jpg;*.bmp;*.jpeg;*.png;*.gif";
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = pathC,
+                Filter = "Files|*.jpg;*.bmp;*.jpeg;*.png;*.gif"
+            };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 filePath = openFileDialog.FileName;
@@ -1636,7 +1713,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnReceptionExemplaireValider_Click(object sender, EventArgs e)
+        private void BtnReceptionExemplaireValider_Click(object sender, EventArgs e)
         {
             if (!txbReceptionExemplaireNumero.Text.Equals(""))
             {
@@ -1651,7 +1728,7 @@ namespace Mediatek86.vue
                     if (controle.CreerExemplaire(exemplaire))
                     {
                         VideReceptionExemplaireInfos();
-                        afficheReceptionExemplairesRevue();
+                        AfficheReceptionExemplairesRevue();
                     }
                     else
                     {
@@ -1675,7 +1752,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvExemplairesListe_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void DgvExemplairesListe_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             string titreColonne = dgvReceptionExemplairesListe.Columns[e.ColumnIndex].HeaderText;
             List<Exemplaire> sortedList = new List<Exemplaire>();
@@ -1699,7 +1776,7 @@ namespace Mediatek86.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void dgvReceptionExemplairesListe_SelectionChanged(object sender, EventArgs e)
+        private void DgvReceptionExemplairesListe_SelectionChanged(object sender, EventArgs e)
         {
             if (dgvReceptionExemplairesListe.CurrentCell != null)
             {

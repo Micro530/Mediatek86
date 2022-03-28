@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Mediatek86.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,6 +54,18 @@
     </Reference>
     <Reference Include="MySqlConnector, Version=2.0.0.0, Culture=neutral, PublicKeyToken=d33d3e53aa5f8c92, processorArchitecture=MSIL">
       <HintPath>packages\MySqlConnector.2.1.8\lib\net471\MySqlConnector.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>packages\Serilog.2.10.0\lib\net46\Serilog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>packages\Serilog.Sinks.Console.4.0.1\lib\net45\Serilog.Sinks.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.EventLog, Version=3.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>packages\Serilog.Sinks.EventLog.3.1.0\lib\net45\Serilog.Sinks.EventLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Serilog.Sinks.File, Version=5.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10, processorArchitecture=MSIL">
+      <HintPath>packages\Serilog.Sinks.File.5.0.0\lib\net45\Serilog.Sinks.File.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -128,11 +141,11 @@
     <Compile Include="vue\FrmCommandes.Designer.cs">
       <DependentUpon>FrmCommandes.cs</DependentUpon>
     </Compile>
-    <Compile Include="vue\ControleUtilisateur\UsrcCommandeLivre.cs">
+    <Compile Include="vue\ControleUtilisateur\UsrcCommande.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="vue\ControleUtilisateur\UsrcCommandeLivre.Designer.cs">
-      <DependentUpon>UsrcCommandeLivre.cs</DependentUpon>
+    <Compile Include="vue\ControleUtilisateur\UsrcCommande.Designer.cs">
+      <DependentUpon>UsrcCommande.cs</DependentUpon>
     </Compile>
     <Compile Include="vue\FrmMediatek.cs">
       <SubType>Form</SubType>
@@ -158,12 +171,13 @@
     <EmbeddedResource Include="vue\FrmCommandes.resx">
       <DependentUpon>FrmCommandes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="vue\ControleUtilisateur\UsrcCommandeLivre.resx">
-      <DependentUpon>UsrcCommandeLivre.cs</DependentUpon>
+    <EmbeddedResource Include="vue\ControleUtilisateur\UsrcCommande.resx">
+      <DependentUpon>UsrcCommande.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vue\FrmMediatek.resx">
       <DependentUpon>FrmMediatek.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include=".editorconfig" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

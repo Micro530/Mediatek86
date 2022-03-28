@@ -1,6 +1,9 @@
 ﻿
 namespace Mediatek86.vue
 {
+    /// <summary>
+    /// Formulaire FrmMediatek
+    /// </summary>
     partial class FrmMediatek
     {
         /// <summary>
@@ -287,7 +290,7 @@ namespace Mediatek86.vue
             this.btnAnnulerLivre.TabIndex = 35;
             this.btnAnnulerLivre.Text = "Annuler";
             this.btnAnnulerLivre.UseVisualStyleBackColor = true;
-            this.btnAnnulerLivre.Click += new System.EventHandler(this.btnAnnulerLivre_Click);
+            this.btnAnnulerLivre.Click += new System.EventHandler(this.BtnAnnulerLivre_Click);
             // 
             // btnValiderModificationLivre
             // 
@@ -299,7 +302,7 @@ namespace Mediatek86.vue
             this.btnValiderModificationLivre.TabIndex = 19;
             this.btnValiderModificationLivre.Text = "Valider les modifications";
             this.btnValiderModificationLivre.UseVisualStyleBackColor = true;
-            this.btnValiderModificationLivre.Click += new System.EventHandler(this.btnValiderLivre_Click);
+            this.btnValiderModificationLivre.Click += new System.EventHandler(this.BtnValiderLivre_Click);
             // 
             // comboLivreRayon
             // 
@@ -505,7 +508,7 @@ namespace Mediatek86.vue
             this.btnCommandeLivre.TabIndex = 20;
             this.btnCommandeLivre.Text = "Accéder aux commandes";
             this.btnCommandeLivre.UseVisualStyleBackColor = true;
-            this.btnCommandeLivre.Click += new System.EventHandler(this.btnCommandeLivre_Click);
+            this.btnCommandeLivre.Click += new System.EventHandler(this.BtnCommandeLivre_Click);
             // 
             // btnAjouterLivre
             // 
@@ -517,7 +520,7 @@ namespace Mediatek86.vue
             this.btnAjouterLivre.TabIndex = 19;
             this.btnAjouterLivre.Text = "Ajouter";
             this.btnAjouterLivre.UseVisualStyleBackColor = true;
-            this.btnAjouterLivre.Click += new System.EventHandler(this.btnAjouterLivre_Click);
+            this.btnAjouterLivre.Click += new System.EventHandler(this.BtnAjouterLivre_Click);
             // 
             // btnModifierLivre
             // 
@@ -529,7 +532,7 @@ namespace Mediatek86.vue
             this.btnModifierLivre.TabIndex = 18;
             this.btnModifierLivre.Text = "Modifier";
             this.btnModifierLivre.UseVisualStyleBackColor = true;
-            this.btnModifierLivre.Click += new System.EventHandler(this.btnModifierLivre_Click);
+            this.btnModifierLivre.Click += new System.EventHandler(this.BtnModifierLivre_Click);
             // 
             // btnSupprLivre
             // 
@@ -541,7 +544,7 @@ namespace Mediatek86.vue
             this.btnSupprLivre.TabIndex = 17;
             this.btnSupprLivre.Text = "Supprimer";
             this.btnSupprLivre.UseVisualStyleBackColor = true;
-            this.btnSupprLivre.Click += new System.EventHandler(this.btnSupprLivre_Click);
+            this.btnSupprLivre.Click += new System.EventHandler(this.BtnSupprLivre_Click);
             // 
             // btnLivresAnnulRayons
             // 
@@ -704,7 +707,7 @@ namespace Mediatek86.vue
             this.tabDvd.TabIndex = 3;
             this.tabDvd.Text = "DVD";
             this.tabDvd.UseVisualStyleBackColor = true;
-            this.tabDvd.Enter += new System.EventHandler(this.tabDvd_Enter);
+            this.tabDvd.Enter += new System.EventHandler(this.TabDvd_Enter);
             // 
             // grpDvdInfos
             // 
@@ -770,7 +773,7 @@ namespace Mediatek86.vue
             this.btnAnnulerDvd.TabIndex = 37;
             this.btnAnnulerDvd.Text = "Annuler";
             this.btnAnnulerDvd.UseVisualStyleBackColor = true;
-            this.btnAnnulerDvd.Click += new System.EventHandler(this.btnAnnulerDvd_Click);
+            this.btnAnnulerDvd.Click += new System.EventHandler(this.BtnAnnulerDvd_Click);
             // 
             // btnValiderModifDvd
             // 
@@ -782,7 +785,7 @@ namespace Mediatek86.vue
             this.btnValiderModifDvd.TabIndex = 36;
             this.btnValiderModifDvd.Text = "Valider les modifications";
             this.btnValiderModifDvd.UseVisualStyleBackColor = true;
-            this.btnValiderModifDvd.Click += new System.EventHandler(this.btnValiderModifDvd_Click);
+            this.btnValiderModifDvd.Click += new System.EventHandler(this.BtnValiderModifDvd_Click);
             // 
             // txbDvdDuree
             // 
@@ -967,7 +970,7 @@ namespace Mediatek86.vue
             this.btnAjouterDvd.TabIndex = 20;
             this.btnAjouterDvd.Text = "Ajouter";
             this.btnAjouterDvd.UseVisualStyleBackColor = true;
-            this.btnAjouterDvd.Click += new System.EventHandler(this.btnAjouterDvd_Click);
+            this.btnAjouterDvd.Click += new System.EventHandler(this.BtnAjouterDvd_Click);
             // 
             // btnModifierDvd
             // 
@@ -979,7 +982,7 @@ namespace Mediatek86.vue
             this.btnModifierDvd.TabIndex = 19;
             this.btnModifierDvd.Text = "Modifier";
             this.btnModifierDvd.UseVisualStyleBackColor = true;
-            this.btnModifierDvd.Click += new System.EventHandler(this.btnModifierDvd_Click);
+            this.btnModifierDvd.Click += new System.EventHandler(this.BtnModifierDvd_Click);
             // 
             // btnSupprDvd
             // 
@@ -991,7 +994,7 @@ namespace Mediatek86.vue
             this.btnSupprDvd.TabIndex = 18;
             this.btnSupprDvd.Text = "Supprimer";
             this.btnSupprDvd.UseVisualStyleBackColor = true;
-            this.btnSupprDvd.Click += new System.EventHandler(this.btnSupprDvd_Click);
+            this.btnSupprDvd.Click += new System.EventHandler(this.BtnSupprDvd_Click);
             // 
             // btnDvdAnnulRayons
             // 
@@ -1001,7 +1004,7 @@ namespace Mediatek86.vue
             this.btnDvdAnnulRayons.TabIndex = 16;
             this.btnDvdAnnulRayons.Text = "X";
             this.btnDvdAnnulRayons.UseVisualStyleBackColor = true;
-            this.btnDvdAnnulRayons.Click += new System.EventHandler(this.btnDvdAnnulRayons_Click);
+            this.btnDvdAnnulRayons.Click += new System.EventHandler(this.BtnDvdAnnulRayons_Click);
             // 
             // btnDvdAnnulPublics
             // 
@@ -1011,7 +1014,7 @@ namespace Mediatek86.vue
             this.btnDvdAnnulPublics.TabIndex = 15;
             this.btnDvdAnnulPublics.Text = "X";
             this.btnDvdAnnulPublics.UseVisualStyleBackColor = true;
-            this.btnDvdAnnulPublics.Click += new System.EventHandler(this.btnDvdAnnulPublics_Click);
+            this.btnDvdAnnulPublics.Click += new System.EventHandler(this.BtnDvdAnnulPublics_Click);
             // 
             // btnDvdNumRecherche
             // 
@@ -1022,7 +1025,7 @@ namespace Mediatek86.vue
             this.btnDvdNumRecherche.TabIndex = 14;
             this.btnDvdNumRecherche.Text = "Rechercher";
             this.btnDvdNumRecherche.UseVisualStyleBackColor = true;
-            this.btnDvdNumRecherche.Click += new System.EventHandler(this.btnDvdNumRecherche_Click);
+            this.btnDvdNumRecherche.Click += new System.EventHandler(this.BtnDvdNumRecherche_Click);
             // 
             // label38
             // 
@@ -1049,7 +1052,7 @@ namespace Mediatek86.vue
             this.btnDvdAnnulGenres.TabIndex = 11;
             this.btnDvdAnnulGenres.Text = "X";
             this.btnDvdAnnulGenres.UseVisualStyleBackColor = true;
-            this.btnDvdAnnulGenres.Click += new System.EventHandler(this.btnDvdAnnulGenres_Click);
+            this.btnDvdAnnulGenres.Click += new System.EventHandler(this.BtnDvdAnnulGenres_Click);
             // 
             // cbxDvdRayons
             // 
@@ -1058,7 +1061,7 @@ namespace Mediatek86.vue
             this.cbxDvdRayons.Name = "cbxDvdRayons";
             this.cbxDvdRayons.Size = new System.Drawing.Size(207, 21);
             this.cbxDvdRayons.TabIndex = 10;
-            this.cbxDvdRayons.SelectedIndexChanged += new System.EventHandler(this.cbxDvdRayons_SelectedIndexChanged);
+            this.cbxDvdRayons.SelectedIndexChanged += new System.EventHandler(this.CbxDvdRayons_SelectedIndexChanged);
             // 
             // label39
             // 
@@ -1077,7 +1080,7 @@ namespace Mediatek86.vue
             this.cbxDvdPublics.Name = "cbxDvdPublics";
             this.cbxDvdPublics.Size = new System.Drawing.Size(207, 21);
             this.cbxDvdPublics.TabIndex = 8;
-            this.cbxDvdPublics.SelectedIndexChanged += new System.EventHandler(this.cbxDvdPublics_SelectedIndexChanged);
+            this.cbxDvdPublics.SelectedIndexChanged += new System.EventHandler(this.CbxDvdPublics_SelectedIndexChanged);
             // 
             // label40
             // 
@@ -1096,7 +1099,7 @@ namespace Mediatek86.vue
             this.cbxDvdGenres.Name = "cbxDvdGenres";
             this.cbxDvdGenres.Size = new System.Drawing.Size(207, 21);
             this.cbxDvdGenres.TabIndex = 6;
-            this.cbxDvdGenres.SelectedIndexChanged += new System.EventHandler(this.cbxDvdGenres_SelectedIndexChanged);
+            this.cbxDvdGenres.SelectedIndexChanged += new System.EventHandler(this.CbxDvdGenres_SelectedIndexChanged);
             // 
             // label41
             // 
@@ -1123,8 +1126,8 @@ namespace Mediatek86.vue
             this.dgvDvdListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDvdListe.Size = new System.Drawing.Size(844, 200);
             this.dgvDvdListe.TabIndex = 4;
-            this.dgvDvdListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvDvdListe_ColumnHeaderMouseClick);
-            this.dgvDvdListe.SelectionChanged += new System.EventHandler(this.dgvDvdListe_SelectionChanged);
+            this.dgvDvdListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvDvdListe_ColumnHeaderMouseClick);
+            this.dgvDvdListe.SelectionChanged += new System.EventHandler(this.DgvDvdListe_SelectionChanged);
             // 
             // label42
             // 
@@ -1142,7 +1145,7 @@ namespace Mediatek86.vue
             this.txbDvdTitreRecherche.Name = "txbDvdTitreRecherche";
             this.txbDvdTitreRecherche.Size = new System.Drawing.Size(190, 20);
             this.txbDvdTitreRecherche.TabIndex = 3;
-            this.txbDvdTitreRecherche.TextChanged += new System.EventHandler(this.txbDvdTitreRecherche_TextChanged);
+            this.txbDvdTitreRecherche.TextChanged += new System.EventHandler(this.TxbDvdTitreRecherche_TextChanged);
             // 
             // tabRevues
             // 
@@ -1155,7 +1158,7 @@ namespace Mediatek86.vue
             this.tabRevues.TabIndex = 1;
             this.tabRevues.Text = "Revues";
             this.tabRevues.UseVisualStyleBackColor = true;
-            this.tabRevues.Enter += new System.EventHandler(this.tabRevues_Enter);
+            this.tabRevues.Enter += new System.EventHandler(this.TabRevues_Enter);
             // 
             // grpRevuesInfos
             // 
@@ -1221,7 +1224,7 @@ namespace Mediatek86.vue
             this.btnAnnulerRevue.TabIndex = 39;
             this.btnAnnulerRevue.Text = "Annuler";
             this.btnAnnulerRevue.UseVisualStyleBackColor = true;
-            this.btnAnnulerRevue.Click += new System.EventHandler(this.btnAnnulerRevue_Click);
+            this.btnAnnulerRevue.Click += new System.EventHandler(this.BtnAnnulerRevue_Click);
             // 
             // btnValideModifRevue
             // 
@@ -1233,7 +1236,7 @@ namespace Mediatek86.vue
             this.btnValideModifRevue.TabIndex = 38;
             this.btnValideModifRevue.Text = "Valider les modifications";
             this.btnValideModifRevue.UseVisualStyleBackColor = true;
-            this.btnValideModifRevue.Click += new System.EventHandler(this.btnValideModifRevue_Click);
+            this.btnValideModifRevue.Click += new System.EventHandler(this.BtnValideModifRevue_Click);
             // 
             // chkRevuesEmpruntable
             // 
@@ -1417,7 +1420,7 @@ namespace Mediatek86.vue
             this.btnAjouterRevue.TabIndex = 21;
             this.btnAjouterRevue.Text = "Ajouter";
             this.btnAjouterRevue.UseVisualStyleBackColor = true;
-            this.btnAjouterRevue.Click += new System.EventHandler(this.btnAjouterRevue_Click);
+            this.btnAjouterRevue.Click += new System.EventHandler(this.BtnAjouterRevue_Click);
             // 
             // btnModifierRevue
             // 
@@ -1429,7 +1432,7 @@ namespace Mediatek86.vue
             this.btnModifierRevue.TabIndex = 20;
             this.btnModifierRevue.Text = "Modifier";
             this.btnModifierRevue.UseVisualStyleBackColor = true;
-            this.btnModifierRevue.Click += new System.EventHandler(this.btnModifierRevue_Click);
+            this.btnModifierRevue.Click += new System.EventHandler(this.BtnModifierRevue_Click);
             // 
             // btnSupprRevues
             // 
@@ -1441,7 +1444,7 @@ namespace Mediatek86.vue
             this.btnSupprRevues.TabIndex = 18;
             this.btnSupprRevues.Text = "Supprimer";
             this.btnSupprRevues.UseVisualStyleBackColor = true;
-            this.btnSupprRevues.Click += new System.EventHandler(this.btnSupprRevues_Click);
+            this.btnSupprRevues.Click += new System.EventHandler(this.BtnSupprRevues_Click);
             // 
             // btnRevuesAnnulRayons
             // 
@@ -1451,7 +1454,7 @@ namespace Mediatek86.vue
             this.btnRevuesAnnulRayons.TabIndex = 16;
             this.btnRevuesAnnulRayons.Text = "X";
             this.btnRevuesAnnulRayons.UseVisualStyleBackColor = true;
-            this.btnRevuesAnnulRayons.Click += new System.EventHandler(this.btnRevuesAnnulRayons_Click);
+            this.btnRevuesAnnulRayons.Click += new System.EventHandler(this.BtnRevuesAnnulRayons_Click);
             // 
             // btnRevuesAnnulPublics
             // 
@@ -1461,7 +1464,7 @@ namespace Mediatek86.vue
             this.btnRevuesAnnulPublics.TabIndex = 15;
             this.btnRevuesAnnulPublics.Text = "X";
             this.btnRevuesAnnulPublics.UseVisualStyleBackColor = true;
-            this.btnRevuesAnnulPublics.Click += new System.EventHandler(this.btnRevuesAnnulPublics_Click);
+            this.btnRevuesAnnulPublics.Click += new System.EventHandler(this.BtnRevuesAnnulPublics_Click);
             // 
             // btnRevuesNumRecherche
             // 
@@ -1472,7 +1475,7 @@ namespace Mediatek86.vue
             this.btnRevuesNumRecherche.TabIndex = 14;
             this.btnRevuesNumRecherche.Text = "Rechercher";
             this.btnRevuesNumRecherche.UseVisualStyleBackColor = true;
-            this.btnRevuesNumRecherche.Click += new System.EventHandler(this.btnRevuesNumRecherche_Click);
+            this.btnRevuesNumRecherche.Click += new System.EventHandler(this.BtnRevuesNumRecherche_Click);
             // 
             // label2
             // 
@@ -1499,7 +1502,7 @@ namespace Mediatek86.vue
             this.btnRevuesAnnulGenres.TabIndex = 11;
             this.btnRevuesAnnulGenres.Text = "X";
             this.btnRevuesAnnulGenres.UseVisualStyleBackColor = true;
-            this.btnRevuesAnnulGenres.Click += new System.EventHandler(this.btnRevuesAnnulGenres_Click);
+            this.btnRevuesAnnulGenres.Click += new System.EventHandler(this.BtnRevuesAnnulGenres_Click);
             // 
             // cbxRevuesRayons
             // 
@@ -1508,7 +1511,7 @@ namespace Mediatek86.vue
             this.cbxRevuesRayons.Name = "cbxRevuesRayons";
             this.cbxRevuesRayons.Size = new System.Drawing.Size(207, 21);
             this.cbxRevuesRayons.TabIndex = 10;
-            this.cbxRevuesRayons.SelectedIndexChanged += new System.EventHandler(this.cbxRevuesRayons_SelectedIndexChanged);
+            this.cbxRevuesRayons.SelectedIndexChanged += new System.EventHandler(this.CbxRevuesRayons_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -1527,7 +1530,7 @@ namespace Mediatek86.vue
             this.cbxRevuesPublics.Name = "cbxRevuesPublics";
             this.cbxRevuesPublics.Size = new System.Drawing.Size(207, 21);
             this.cbxRevuesPublics.TabIndex = 8;
-            this.cbxRevuesPublics.SelectedIndexChanged += new System.EventHandler(this.cbxRevuesPublics_SelectedIndexChanged);
+            this.cbxRevuesPublics.SelectedIndexChanged += new System.EventHandler(this.CbxRevuesPublics_SelectedIndexChanged);
             // 
             // label32
             // 
@@ -1546,7 +1549,7 @@ namespace Mediatek86.vue
             this.cbxRevuesGenres.Name = "cbxRevuesGenres";
             this.cbxRevuesGenres.Size = new System.Drawing.Size(207, 21);
             this.cbxRevuesGenres.TabIndex = 6;
-            this.cbxRevuesGenres.SelectedIndexChanged += new System.EventHandler(this.cbxRevuesGenres_SelectedIndexChanged);
+            this.cbxRevuesGenres.SelectedIndexChanged += new System.EventHandler(this.CbxRevuesGenres_SelectedIndexChanged);
             // 
             // label33
             // 
@@ -1573,8 +1576,8 @@ namespace Mediatek86.vue
             this.dgvRevuesListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRevuesListe.Size = new System.Drawing.Size(844, 200);
             this.dgvRevuesListe.TabIndex = 4;
-            this.dgvRevuesListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRevuesListe_ColumnHeaderMouseClick);
-            this.dgvRevuesListe.SelectionChanged += new System.EventHandler(this.dgvRevuesListe_SelectionChanged);
+            this.dgvRevuesListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvRevuesListe_ColumnHeaderMouseClick);
+            this.dgvRevuesListe.SelectionChanged += new System.EventHandler(this.DgvRevuesListe_SelectionChanged);
             // 
             // label34
             // 
@@ -1592,7 +1595,7 @@ namespace Mediatek86.vue
             this.txbRevuesTitreRecherche.Name = "txbRevuesTitreRecherche";
             this.txbRevuesTitreRecherche.Size = new System.Drawing.Size(190, 20);
             this.txbRevuesTitreRecherche.TabIndex = 3;
-            this.txbRevuesTitreRecherche.TextChanged += new System.EventHandler(this.txbRevuesTitreRecherche_TextChanged);
+            this.txbRevuesTitreRecherche.TextChanged += new System.EventHandler(this.TxbRevuesTitreRecherche_TextChanged);
             // 
             // tabReceptionRevue
             // 
@@ -1604,7 +1607,7 @@ namespace Mediatek86.vue
             this.tabReceptionRevue.TabIndex = 4;
             this.tabReceptionRevue.Text = "Parutions des revues";
             this.tabReceptionRevue.UseVisualStyleBackColor = true;
-            this.tabReceptionRevue.Enter += new System.EventHandler(this.tabReceptionRevue_Enter);
+            this.tabReceptionRevue.Enter += new System.EventHandler(this.TabReceptionRevue_Enter);
             // 
             // grpReceptionExemplaire
             // 
@@ -1633,7 +1636,7 @@ namespace Mediatek86.vue
             this.btnReceptionExemplaireImage.TabIndex = 43;
             this.btnReceptionExemplaireImage.Text = "Rechercher";
             this.btnReceptionExemplaireImage.UseVisualStyleBackColor = true;
-            this.btnReceptionExemplaireImage.Click += new System.EventHandler(this.btnReceptionExemplaireImage_Click);
+            this.btnReceptionExemplaireImage.Click += new System.EventHandler(this.BtnReceptionExemplaireImage_Click);
             // 
             // pcbReceptionExemplaireImage
             // 
@@ -1653,7 +1656,7 @@ namespace Mediatek86.vue
             this.btnReceptionExemplaireValider.TabIndex = 17;
             this.btnReceptionExemplaireValider.Text = "Valider la réception";
             this.btnReceptionExemplaireValider.UseVisualStyleBackColor = true;
-            this.btnReceptionExemplaireValider.Click += new System.EventHandler(this.btnReceptionExemplaireValider_Click);
+            this.btnReceptionExemplaireValider.Click += new System.EventHandler(this.BtnReceptionExemplaireValider_Click);
             // 
             // txbReceptionExemplaireImage
             // 
@@ -1785,8 +1788,8 @@ namespace Mediatek86.vue
             this.dgvReceptionExemplairesListe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvReceptionExemplairesListe.Size = new System.Drawing.Size(391, 134);
             this.dgvReceptionExemplairesListe.TabIndex = 52;
-            this.dgvReceptionExemplairesListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvExemplairesListe_ColumnHeaderMouseClick);
-            this.dgvReceptionExemplairesListe.SelectionChanged += new System.EventHandler(this.dgvReceptionExemplairesListe_SelectionChanged);
+            this.dgvReceptionExemplairesListe.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DgvExemplairesListe_ColumnHeaderMouseClick);
+            this.dgvReceptionExemplairesListe.SelectionChanged += new System.EventHandler(this.DgvReceptionExemplairesListe_SelectionChanged);
             // 
             // chkReceptionRevueEmpruntable
             // 
@@ -1860,7 +1863,7 @@ namespace Mediatek86.vue
             this.txbReceptionRevueNumero.Name = "txbReceptionRevueNumero";
             this.txbReceptionRevueNumero.Size = new System.Drawing.Size(100, 20);
             this.txbReceptionRevueNumero.TabIndex = 43;
-            this.txbReceptionRevueNumero.TextChanged += new System.EventHandler(this.txbReceptionRevueNumero_TextChanged);
+            this.txbReceptionRevueNumero.TextChanged += new System.EventHandler(this.TxbReceptionRevueNumero_TextChanged);
             // 
             // label3
             // 
@@ -1970,7 +1973,7 @@ namespace Mediatek86.vue
             this.btnReceptionRechercher.TabIndex = 16;
             this.btnReceptionRechercher.Text = "Rechercher";
             this.btnReceptionRechercher.UseVisualStyleBackColor = true;
-            this.btnReceptionRechercher.Click += new System.EventHandler(this.btnReceptionRechercher_Click);
+            this.btnReceptionRechercher.Click += new System.EventHandler(this.BtnReceptionRechercher_Click);
             // 
             // btnAccederCommandeDvd
             // 
@@ -1982,7 +1985,7 @@ namespace Mediatek86.vue
             this.btnAccederCommandeDvd.TabIndex = 21;
             this.btnAccederCommandeDvd.Text = "Accéder aux commandes";
             this.btnAccederCommandeDvd.UseVisualStyleBackColor = true;
-            this.btnAccederCommandeDvd.Click += new System.EventHandler(this.btnActiverCommandeDvd_click);
+            this.btnAccederCommandeDvd.Click += new System.EventHandler(this.BtnActiverCommandeDvd_click);
             // 
             // btnAccederCommandeRevue
             // 
@@ -1994,7 +1997,7 @@ namespace Mediatek86.vue
             this.btnAccederCommandeRevue.TabIndex = 22;
             this.btnAccederCommandeRevue.Text = "Accéder aux commandes";
             this.btnAccederCommandeRevue.UseVisualStyleBackColor = true;
-            this.btnAccederCommandeRevue.Click += new System.EventHandler(this.btnAccederCommandeRevue_Click);
+            this.btnAccederCommandeRevue.Click += new System.EventHandler(this.BtnAccederCommandeRevue_Click);
             // 
             // FrmMediatek
             // 

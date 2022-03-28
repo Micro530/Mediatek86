@@ -1,7 +1,10 @@
 ﻿
 namespace Mediatek86.vue.ControleUtilisateur
 {
-    partial class UsrcCommandeLivre
+    /// <summary>
+    /// UserControle UsrcCommande
+    /// </summary>
+    partial class UsrcCommande
     {
         /// <summary> 
         /// Variable nécessaire au concepteur.
@@ -66,7 +69,7 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.dgvListCommande.RowHeadersVisible = false;
             this.dgvListCommande.Size = new System.Drawing.Size(847, 197);
             this.dgvListCommande.TabIndex = 0;
-            this.dgvListCommande.SelectionChanged += new System.EventHandler(this.dgvListCommande_SelectionChanged);
+            this.dgvListCommande.SelectionChanged += new System.EventHandler(this.DgvListCommande_SelectionChanged);
             // 
             // txtInfoObjet
             // 
@@ -98,7 +101,7 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnRetourDoc.TabIndex = 5;
             this.btnRetourDoc.Text = "Retour aux Documents";
             this.btnRetourDoc.UseVisualStyleBackColor = true;
-            this.btnRetourDoc.Click += new System.EventHandler(this.btnRetourDoc_Click);
+            this.btnRetourDoc.Click += new System.EventHandler(this.BtnRetourDoc_Click);
             // 
             // btnSupprimerCommandeLivre
             // 
@@ -109,7 +112,7 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnSupprimerCommandeLivre.TabIndex = 4;
             this.btnSupprimerCommandeLivre.Text = "Supprimer la commande selectionnée";
             this.btnSupprimerCommandeLivre.UseVisualStyleBackColor = true;
-            this.btnSupprimerCommandeLivre.Click += new System.EventHandler(this.btnSupprimerCommandeLivre_Click);
+            this.btnSupprimerCommandeLivre.Click += new System.EventHandler(this.BtnSupprimerCommandeLivre_Click);
             // 
             // btnModifierCommandeLivre
             // 
@@ -119,7 +122,7 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnModifierCommandeLivre.TabIndex = 3;
             this.btnModifierCommandeLivre.Text = "Modifier la commande selectionnée";
             this.btnModifierCommandeLivre.UseVisualStyleBackColor = true;
-            this.btnModifierCommandeLivre.Click += new System.EventHandler(this.btnModifierCommandeLivre_Click);
+            this.btnModifierCommandeLivre.Click += new System.EventHandler(this.BtnModifierCommandeLivre_Click);
             // 
             // btnAjoutCommandeLivre
             // 
@@ -129,7 +132,7 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnAjoutCommandeLivre.TabIndex = 2;
             this.btnAjoutCommandeLivre.Text = "Ajouter une commande pour ce livre";
             this.btnAjoutCommandeLivre.UseVisualStyleBackColor = true;
-            this.btnAjoutCommandeLivre.Click += new System.EventHandler(this.btnAjoutCommandeLivre_Click);
+            this.btnAjoutCommandeLivre.Click += new System.EventHandler(this.BtnAjoutCommandeLivre_Click);
             // 
             // grbInfoCommande
             // 
@@ -164,7 +167,7 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnAnnulerModif.TabIndex = 9;
             this.btnAnnulerModif.Text = "Annuler";
             this.btnAnnulerModif.UseVisualStyleBackColor = true;
-            this.btnAnnulerModif.Click += new System.EventHandler(this.btnAnnulerModif_Click);
+            this.btnAnnulerModif.Click += new System.EventHandler(this.BtnAnnulerModif_Click);
             // 
             // btnValiderModifCommandeLivre
             // 
@@ -174,7 +177,7 @@ namespace Mediatek86.vue.ControleUtilisateur
             this.btnValiderModifCommandeLivre.TabIndex = 8;
             this.btnValiderModifCommandeLivre.Text = "Valider les modifications";
             this.btnValiderModifCommandeLivre.UseVisualStyleBackColor = true;
-            this.btnValiderModifCommandeLivre.Click += new System.EventHandler(this.btnValiderModif_Click);
+            this.btnValiderModifCommandeLivre.Click += new System.EventHandler(this.BtnValiderModif_Click);
             // 
             // comboSuivi
             // 
