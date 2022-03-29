@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup-Mediatek86", "..\Setup-Mediatek86\Setup-Mediatek86.vdproj", "{C5562D3E-84D8-41B5-9FF3-B90E4610FDB8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{31EFD06B-31E9-4722-9680-BB1177560110}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31EFD06B-31E9-4722-9680-BB1177560110}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31EFD06B-31E9-4722-9680-BB1177560110}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5562D3E-84D8-41B5-9FF3-B90E4610FDB8}.Debug|Any CPU.ActiveCfg = Debug
+		{C5562D3E-84D8-41B5-9FF3-B90E4610FDB8}.Debug|Any CPU.Build.0 = Debug
+		{C5562D3E-84D8-41B5-9FF3-B90E4610FDB8}.Release|Any CPU.ActiveCfg = Release
+		{C5562D3E-84D8-41B5-9FF3-B90E4610FDB8}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

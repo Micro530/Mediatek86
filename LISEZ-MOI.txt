@@ -1,0 +1,9 @@
+**Pour acceder à la base de données**
+URL : bddawsfree.ci10i3jrrmqo.eu-west-3.rds.amazonaws.com
+Port : 3306
+User : admin
+Mot de passe : adminaws530
+
+**Pour acceder à l'application**
+User possible: john(service administratif), marty(service prêt), homer(service culture), arthur(service administrateur)
+Mot de passe : pwd (pour tous les utilisateurs)
