@@ -185,7 +185,9 @@ namespace Mediatek86.bdd
             if (!(reader is null))
             {
                 reader.Close();
+                
             }
+            //reader?.Close();
         }
 
         /// <summary>

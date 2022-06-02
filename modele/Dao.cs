@@ -17,19 +17,19 @@ namespace Mediatek86.modele
         /// <summary>
         /// Adresse du server
         /// </summary>
-        private static readonly string server = "bddawsfree.ci10i3jrrmqo.eu-west-3.rds.amazonaws.com";
+        private static readonly string server = "quentinstac-ressources.fr";
         /// <summary>
         /// nom du user
         /// </summary>
-        private static readonly string userid = "admin";
+        private static readonly string userid = "yvqk9166_adminMediatek86";
         /// <summary>
         /// mot de passe du user
         /// </summary>
-        private static readonly string password = "adminaws530";
+        private static readonly string password = "Admin13579@APE5!";
         /// <summary>
         /// nom de la bdd
         /// </summary>
-        private static readonly string database = "mediatek86";
+        private static readonly string database = "yvqk9166_Mediatek86";
         /// <summary>
         /// Chaine de connexion
         /// </summary>
